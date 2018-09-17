@@ -8,8 +8,46 @@ const app = express();
 
 // mongoose
 mongoose.Promise = global.Promise;
-mongose.connect(config.DATABASE);
+mongoose.connect(config.DATABASE);
+
+const { User } = require("./models/user");
+
+// POST
+
+app.post("/api/login", (req, res) => {
+  console.log(req.body);
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (!user) {
+      return res.json({
+        isAuth: false,
+        message: "Email has not been found"
+      });
+    }
+
+    user.comparePasswords(req.body.password, (err, isMatch) => {
+      if (!isMatch)
+        return res.json({
+          isAuth: false,
+          message: "Wrong password"
+        });
+
+      user.generateToken((err, user) => {
+        if (err) return res.status(400).send(err);
+        res.cookie("auth", user.token).json({
+          isAuth: true,
+          id: user._id,
+          email: user.email
+        });
+      });
+    });
+  });
+});
 
 // executed every time when app receives req
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+  console.log(`SERVER RUNNNING`);
+});
