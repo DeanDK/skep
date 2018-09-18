@@ -45,6 +45,18 @@ app.post("/api/login", (req, res) => {
   });
 });
 
+app.post("/api/register", (req, res) => {
+  const user = new User(req.body);
+
+  user.save((err, doc) => {
+    if (err) return res.json({ message: err });
+    res.status(200).json({
+      success: true,
+      user: doc
+    });
+  });
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`SERVER RUNNNING`);
