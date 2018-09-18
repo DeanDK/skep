@@ -13,7 +13,7 @@ class Login extends Component {
   };
 
   componentWillReceiveProps = nextProps => {
-    // if auth is true history push to /home
+    if (nextProps.user.login.isAuth) this.props.history.push("/home");
   };
   _handleEmailInput = e => {
     this.setState({ email: e.target.value });
@@ -55,7 +55,7 @@ class Login extends Component {
 
   render() {
     let emailError = this.state.emailError;
-    console.log(this.props.user);
+    console.log(this.props);
     return (
       <div className="wrapper fadeInDown">
         <div id="formContent">

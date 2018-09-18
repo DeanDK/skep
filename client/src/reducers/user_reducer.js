@@ -1,7 +1,7 @@
 export default function(state = {}, action) {
   switch (action.type) {
     case "USER_LOGIN":
-      return { ...state, user: action.payload };
+      return { ...state, login: action.payload };
 
     default:
       return state;
