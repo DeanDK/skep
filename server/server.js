@@ -14,8 +14,10 @@ const { User } = require("./models/user");
 
 // POST
 
+app.use(bodyParser.json());
+app.use(cookieParser());
+
 app.post("/api/login", (req, res) => {
-  console.log(req.body);
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
       return res.json({
@@ -42,10 +44,6 @@ app.post("/api/login", (req, res) => {
     });
   });
 });
-
-// executed every time when app receives req
-app.use(bodyParser.json());
-app.use(cookieParser());
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

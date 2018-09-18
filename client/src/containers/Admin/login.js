@@ -91,7 +91,7 @@ class Login extends Component {
           <div id="login_error">{emailError}</div>
 
           <div id="formFooter">
-            <a className="underlineHover" href="#">
+            <a className="underlineHover" href="/password">
               Forgot Password?
             </a>
           </div>
