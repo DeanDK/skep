@@ -371,3 +371,10 @@ input[type="text"]:placeholder {
     transform: rotate(360deg);
   }
 }
+
+/* ========================= BAR ===========================*/
+
+#bar {
+  margin: 0;
+  padding: 0;
+}
