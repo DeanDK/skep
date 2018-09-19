@@ -11,12 +11,21 @@ mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE);
 
 const { User } = require("./models/user");
-
-// POST
+const { auth } = require("./middlewares/auth");
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
+// GET
+app.get("/api/auth", auth, (req, res) => {
+  res.json({
+    isAuth: true,
+    id: req.user._id,
+    email: req.user.email
+  });
+});
+
+// POST
 app.post("/api/login", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {

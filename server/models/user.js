@@ -69,6 +69,16 @@ userSchema.methods.comparePasswords = function(passFromInput, cb) {
   });
 };
 
+userSchema.methods.findByToken = function(token, cb) {
+  var user = this;
+  jwt.verify(token, config.SECRET, function(err, decode) {
+    user.findOne({ _id: decode, token: token }, function(err, user) {
+      if (err) return cb(err);
+      cb(null, user);
+    });
+  });
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = { User };

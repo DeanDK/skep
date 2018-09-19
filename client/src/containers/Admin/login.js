@@ -43,7 +43,7 @@ class Login extends Component {
     e.preventDefault();
     let shouldDispatch = this._isValidEmail(this.state.email);
     if (shouldDispatch) {
-      this.setState({ emailError: "" }, () => {
+      this.setState({ emailError: "", loading: true }, () => {
         this.props.dispatch(userLogin(this.state));
       });
     } else {
@@ -55,7 +55,6 @@ class Login extends Component {
 
   render() {
     let emailError = this.state.emailError;
-    console.log(this.props);
     return (
       <div className="wrapper fadeInDown">
         <div id="formContent">
