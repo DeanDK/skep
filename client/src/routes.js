@@ -8,12 +8,12 @@ import Layout from "./hoc/layout";
 import Auth from "./hoc/auth";
 const Routes = () => {
   return (
-    <Layout>
-      <Switch>
-        <Route path="/" exact component={Auth(Login, false)} />
+    <Switch>
+      <Route path="/" exact component={Auth(Login, false)} />
+      <Layout>
         <Route path="/home" exact component={Auth(Home)} />
-      </Switch>
-    </Layout>
+      </Layout>
+    </Switch>
   );
 };
 

@@ -1,10 +1,10 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Header from "./../components/Header/header.js";
 
 const Bar = props => {
   return (
     <div>
-      <FontAwesomeIcon id="bar" icon="bars" sixe="2x" />
+      <Header />
       <div>{props.children}</div>
     </div>
   );
