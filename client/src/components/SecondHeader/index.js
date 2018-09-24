@@ -6,22 +6,22 @@ class SecondHeader extends Component {
         <nav>
           <ul>
             <li>
-              <a href="#">WordPress</a>
+              <a href="#">Grades</a>
               <ul>
                 <li>
-                  <a href="#">Themes</a>
+                  <a href="#">7</a>
                 </li>
                 <li>
-                  <a href="#">Plugins</a>
+                  <a href="#">10</a>
                 </li>
                 <li>
-                  <a href="#">Tutorials</a>
+                  <a href="#">12</a>
                 </li>
               </ul>
             </li>
 
             <li>
-              <a href="#">Web Design</a>
+              <a href="#">Semester</a>
               <ul>
                 <li>
                   <a href="#">Resources</a>
@@ -36,7 +36,7 @@ class SecondHeader extends Component {
             </li>
 
             <li>
-              <a href="#">Web Design</a>
+              <a href="#">Subject</a>
               <ul>
                 <li>
                   <a href="#">Resources</a>
