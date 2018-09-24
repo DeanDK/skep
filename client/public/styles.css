@@ -291,13 +291,13 @@ input[type="text"]:placeholder {
   box-sizing: border-box;
 } */
 
-/*============= LOGIN ======================= */
+/*============= LOGIN ================================================================================================== */
 
 #login_error {
   color: red;
 }
 
-/* ========================== LOADER ==================*/
+/* ========================== LOADER ==================================================================================*/
 
 .loader,
 .loader:before,
@@ -367,7 +367,7 @@ input[type="text"]:placeholder {
   }
 }
 
-/* ========================= HEADER ===========================*/
+/* ========================= HEADER ===========================================================================================================*/
 
 header {
   padding-top: 5px;
@@ -407,7 +407,7 @@ header .navItem span {
   margin-right: 10px;
 }
 
-/* ================================================= SECONDARY NAVBAR*/
+/* ================================================= SECONDARY NAVBAR* ===================================================================/
 
 /* CSS Document */
 
@@ -488,7 +488,7 @@ nav ul ul {
 
 /* Display Dropdowns on Hover */
 nav ul li:hover > ul {
-  display: inherit;
+  display: block;
 }
 
 /* Fisrt Tier Dropdown */
@@ -500,11 +500,11 @@ nav ul ul li {
 }
 
 /* Second, Third and more Tiers	*/
-nav ul ul ul li {
+/* nav ul ul ul li {
   position: relative;
   top: -60px;
   left: 170px;
-}
+} */
 
 /* Change this in order to change the Dropdown symbol */
 li > a:after {
