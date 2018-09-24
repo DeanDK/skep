@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
+import Nav from "./Sidenav/sidenav";
+
 class Header extends Component {
   state = {
     showNav: false
@@ -20,6 +22,7 @@ class Header extends Component {
             style={{ color: "#ffffff", padding: "10px", cursor: "pointer" }}
           />
         </div>
+        <Nav showNav={this.state.showNav} />
         <Link to="/home" className="logo">
           SKEP
         </Link>
