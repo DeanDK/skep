@@ -2,20 +2,55 @@ import React, { Component } from "react";
 class SecondHeader extends Component {
   render() {
     return (
-      <div className="navbar">
-        <a href="#home">Home</a>
-        <a href="#news">News</a>
-        <div className="dropdown">
-          <button className="dropbtn">
-            Dropdown
-            <i className="fa fa-caret-down" />
-          </button>
-          <div className="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-          </div>
-        </div>
+      <div id="container">
+        <nav>
+          <ul>
+            <li>
+              <a href="#">WordPress</a>
+              <ul>
+                <li>
+                  <a href="#">Themes</a>
+                </li>
+                <li>
+                  <a href="#">Plugins</a>
+                </li>
+                <li>
+                  <a href="#">Tutorials</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#">Web Design</a>
+              <ul>
+                <li>
+                  <a href="#">Resources</a>
+                </li>
+                <li>
+                  <a href="#">Links</a>
+                </li>
+                <li>
+                  <a href="#">Tutorials</a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="#">Web Design</a>
+              <ul>
+                <li>
+                  <a href="#">Resources</a>
+                </li>
+                <li>
+                  <a href="#">Links</a>
+                </li>
+                <li>
+                  <a href="#">Tutorials</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
       </div>
     );
   }
