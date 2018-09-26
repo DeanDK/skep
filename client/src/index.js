@@ -11,8 +11,20 @@ import Routes from "./routes";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { faCrown } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faBars);
+library.add(faHome);
+library.add(faFileAlt);
+library.add(faSignInAlt);
+library.add(faSignOutAlt);
+library.add(faUserAlt);
+library.add(faCrown);
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
   ReduxThunk
