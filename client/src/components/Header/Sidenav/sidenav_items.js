@@ -28,14 +28,14 @@ const SideNavItems = () => {
 
     {
       type: "sideItem",
-      icon: "file-alt",
+      icon: "book",
       text: "My Projects",
       link: "/user/user-reviews",
       restricted: false
     },
     {
       type: "sideItem",
-      icon: "file-alt",
+      icon: "book",
       text: "Add Projects",
       link: "/user/add",
       restricted: false

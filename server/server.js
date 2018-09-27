@@ -11,6 +11,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE);
 
 const { User } = require("./models/user");
+const { File } = require("./models/file");
 const { auth } = require("./middlewares/auth");
 
 app.use(bodyParser.json());
@@ -62,6 +63,18 @@ app.post("/api/register", (req, res) => {
     res.status(200).json({
       success: true,
       user: doc
+    });
+  });
+});
+
+app.post("/api/file", (req, res) => {
+  const file = new File(req.body);
+
+  file.save((err, doc) => {
+    if (err) return res.json({ message: err });
+    res.status(200).json({
+      success: true,
+      file: doc
     });
   });
 });
