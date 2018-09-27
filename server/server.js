@@ -26,6 +26,22 @@ app.get("/api/auth", auth, (req, res) => {
   });
 });
 
+app.get("/api/allFiles", (req, res) => {
+  let skip = parseInt(req.query.skip);
+  let limit = parseInt(req.query.limit);
+  let order = req.query.order;
+
+  // ORDER = asc || desc
+  File.find()
+    .skip(skip)
+    .sort({ _id: order })
+    .limit(limit)
+    .exec((err, doc) => {
+      if (err) return res.status(400).send(err);
+      res.send(doc);
+    });
+});
+
 // POST
 app.post("/api/login", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {

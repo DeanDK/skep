@@ -14,7 +14,6 @@ class Header extends Component {
   };
 
   render() {
-    console.log(this.state.showNav);
     return (
       <header>
         <div className="open_nav">
