@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 
 import SecondHeader from "./../components/SecondHeader";
-import HomeItems from "./home_items_container.js";
-class Home extends Component {
+import Home from "./../components/Home/home.js";
+class HomeContainer extends Component {
   render() {
     return (
       <div>
         <SecondHeader />
-        <HomeItems />
+        <Home />
       </div>
     );
   }
 }
 
-export default Home;
+export default HomeContainer;

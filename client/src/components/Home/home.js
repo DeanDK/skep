@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getAllFiles } from "./../actions";
+import { getAllFiles } from "./../../actions";
 
-class HomeItems extends Component {
+class Home extends Component {
   state = {
     skip: 0,
     limit: 3,
@@ -17,7 +17,6 @@ class HomeItems extends Component {
   };
 
   render() {
-    console.log(this.props);
     return <div>Hello</div>;
   }
 }
@@ -26,4 +25,4 @@ function mapStateToProps(state) {
   return { file: state.file };
 }
 
-export default connect(mapStateToProps)(HomeItems);
+export default connect(mapStateToProps)(Home);
