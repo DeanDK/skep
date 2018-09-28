@@ -12,10 +12,16 @@ export function auth() {
   return { type: "USER_AUTH", payload: request };
 }
 
-export function getAllFiles(start = 0, limit = 3, order = "ASC") {
+export function getAllFiles(start = 0, limit = 3, order = "ASC", list = "") {
   const request = axios
     .get(`/api/allFiles?limit=${limit}&skip=${start}&order=${order}`)
-    .then(response => response.data);
+    .then(response => {
+      if (list) {
+        return [...list, ...response.data];
+      } else {
+        return response.data;
+      }
+    });
 
   return { type: "GET_FILES", payload: request };
 }

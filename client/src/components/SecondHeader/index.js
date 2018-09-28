@@ -6,46 +6,46 @@ class SecondHeader extends Component {
         <nav>
           <ul>
             <li>
-              <a href="#">Grades</a>
+              <a>Grades</a>
               <ul>
                 <li>
-                  <a href="#">7</a>
+                  <a>7</a>
                 </li>
                 <li>
-                  <a href="#">10</a>
+                  <a>10</a>
                 </li>
                 <li>
-                  <a href="#">12</a>
+                  <a>12</a>
                 </li>
               </ul>
             </li>
 
             <li>
-              <a href="#">Semester</a>
+              <a>Semester</a>
               <ul>
                 <li>
-                  <a href="#">Resources</a>
+                  <a>Resources</a>
                 </li>
                 <li>
-                  <a href="#">Links</a>
+                  <a>Links</a>
                 </li>
                 <li>
-                  <a href="#">Tutorials</a>
+                  <a>Tutorials</a>
                 </li>
               </ul>
             </li>
 
             <li>
-              <a href="#">Subject</a>
+              <a>Subject</a>
               <ul>
                 <li>
-                  <a href="#">Resources</a>
+                  <a>Resources</a>
                 </li>
                 <li>
-                  <a href="#">Links</a>
+                  <a>Links</a>
                 </li>
                 <li>
-                  <a href="#">Tutorials</a>
+                  <a>Tutorials</a>
                 </li>
               </ul>
             </li>
