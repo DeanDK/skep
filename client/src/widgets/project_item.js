@@ -17,6 +17,10 @@ const ProjectItem = item => {
         <div className="book_bubble">
           <strong>Grade: </strong> {item.files[0].grade}
         </div>
+
+        <div className="book_publisher">
+          <strong>Published by: </strong> {item.email}
+        </div>
       </div>
     </Link>
   );

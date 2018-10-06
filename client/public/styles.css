@@ -549,8 +549,13 @@ li > a:only-child:after {
   color: #fff;
 }
 
-.book_item .book_bubble.rating {
-  background: #5f5f5f;
+.book_item .book_publisher {
+  background: #5f5f5f !important;
+  display: inline-block;
+  padding: 3px 5px;
+  border-radius: 3px;
+  font-size: 11px;
+  color: #fff;
 }
 
 .book_item .book_author {
