@@ -78,7 +78,7 @@ class Login extends Component {
               onChange={this._handleEmailInput}
             />
             <input
-              type="text"
+              type="password"
               id="password"
               className="fadeIn third"
               name="login"

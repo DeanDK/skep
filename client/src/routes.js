@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./containers/home_container";
 import Login from "./containers/Admin/login";
 import Layout from "./hoc/layout";
+import AddProject from "./components/Add/project.js";
 
 import Auth from "./hoc/auth";
 const Routes = () => {
@@ -12,6 +13,7 @@ const Routes = () => {
       <Route path="/" exact component={Auth(Login, false)} />
       <Layout>
         <Route path="/home" exact component={Auth(Home)} />
+        <Route path="/user/add" exact component={Auth(AddProject)} />
       </Layout>
     </Switch>
   );
