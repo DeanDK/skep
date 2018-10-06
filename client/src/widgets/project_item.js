@@ -5,17 +5,17 @@ const ProjectItem = item => {
   return (
     <Link to={`/files/${item._id}`} className="book_item">
       <div className="book_header">
-        <h2>{item.name}</h2>
+        <h2>{item.files[0].name}</h2>
       </div>
       <div className="book_items">
-        <div className="book_author">{item.subject}</div>
+        <div className="book_author">{item.files[0].subject}</div>
 
         <div className="book_bubble">
-          <strong>Study: </strong> {item.study}
+          <strong>Study: </strong> {item.files[0].study}
         </div>
 
         <div className="book_bubble">
-          <strong>Grade: </strong> {item.grade}
+          <strong>Grade: </strong> {item.files[0].grade}
         </div>
       </div>
     </Link>

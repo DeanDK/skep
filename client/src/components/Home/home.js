@@ -22,17 +22,16 @@ class Home extends Component {
   };
 
   _renderItems = files =>
-    files.file
-      ? files.file.map((item, i) => {
-          return <ProjectItem {...item} key={i} />;
+    files
+      ? files.map((item, i) => {
+          return <ProjectItem {...item} key={i} index={i} />;
         })
       : null;
 
   render() {
-    console.log(this.props.files.file);
     return (
       <div>
-        {this._renderItems(this.props.files)}
+        {this._renderItems(this.props.files.file)}
         <LoadMore onClick={this._loadmore} />
       </div>
     );
