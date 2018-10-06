@@ -3,12 +3,14 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const config = require("./../config/config").get(process.env.NODE_ENV);
 const SALT_I = 10;
+const FileSchema = require("./file.js");
 
+// add required true
 const userSchema = mongoose.Schema({
   email: {
     type: String,
-    required: true,
     trim: true,
+    required: true,
     unique: 1
   },
   password: {
@@ -22,7 +24,8 @@ const userSchema = mongoose.Schema({
   role: {
     type: Number,
     default: 0 // 0 is student, 1 is admin
-  }
+  },
+  files: [FileSchema]
 });
 
 /* Method will only be used if user needs to reg

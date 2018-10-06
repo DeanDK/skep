@@ -12,7 +12,7 @@ export function auth() {
   return { type: "USER_AUTH", payload: request };
 }
 
-export function getAllFiles(start = 0, limit = 3, order = "ASC", list = "") {
+export function getAllFiles(start = 0, limit = 3, order = "asc", list = "") {
   const request = axios
     .get(`/api/allFiles?limit=${limit}&skip=${start}&order=${order}`)
     .then(response => {

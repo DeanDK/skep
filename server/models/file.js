@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const fileSchema = mongoose.Schema({
+const FileSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -14,7 +15,8 @@ const fileSchema = mongoose.Schema({
   grade: {
     type: Number,
     min: 7,
-    max: 12
+    max: 12,
+    require: true
   },
   study: {
     type: String,
@@ -23,6 +25,4 @@ const fileSchema = mongoose.Schema({
   }
 });
 
-const File = mongoose.model("File", fileSchema);
-
-module.exports = { File };
+module.exports = FileSchema;

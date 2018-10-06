@@ -11,7 +11,6 @@ mongoose.Promise = global.Promise;
 mongoose.connect(config.DATABASE);
 
 const { User } = require("./models/user");
-const { File } = require("./models/file");
 const { auth } = require("./middlewares/auth");
 
 app.use(bodyParser.json());
@@ -32,9 +31,9 @@ app.get("/api/allFiles", (req, res) => {
   let order = req.query.order;
 
   // ORDER = asc || desc
-  File.find()
+  User.find()
+    .populate({ path: "files" })
     .skip(skip)
-    .sort({ _id: order })
     .limit(limit)
     .exec((err, doc) => {
       if (err) return res.status(400).send(err);
@@ -83,14 +82,22 @@ app.post("/api/register", (req, res) => {
   });
 });
 
-app.post("/api/file", (req, res) => {
-  const file = new File(req.body);
-
-  file.save((err, doc) => {
-    if (err) return res.json({ message: err });
-    res.status(200).json({
-      success: true,
-      file: doc
+app.patch("/api/addFile", (req, res) => {
+  User.findByToken(req.headers.auth, (err, user) => {
+    if (err) res.json({ message: err });
+    user.set({
+      files: [
+        {
+          name: req.body.files[0].name,
+          subject: req.body.files[0].subject,
+          grade: req.body.files[0].grade,
+          study: req.body.files[0].study
+        }
+      ]
+    });
+    user.save((err, updatedUser) => {
+      if (err) return handleError(err);
+      res.send(updatedUser);
     });
   });
 });
