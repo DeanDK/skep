@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import validator from "validator";
 
 import { userLogin } from "../../actions";
@@ -11,7 +12,6 @@ class Login extends Component {
     emailError: null,
     passwordError: null
   };
-
   componentWillReceiveProps = nextProps => {
     if (nextProps.user.login.isAuth) this.props.history.push("/home");
   };
@@ -90,9 +90,7 @@ class Login extends Component {
           <div id="login_error">{emailError}</div>
 
           <div id="formFooter">
-            <a className="underlineHover" href="/password">
-              Forgot Password?
-            </a>
+            <Link to="/signup">Sign up ?</Link>
           </div>
         </div>
       </div>
