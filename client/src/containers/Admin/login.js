@@ -48,13 +48,20 @@ class Login extends Component {
       });
     } else {
       this.setState({
-        emailError: "Email is incorrect. Please try again : ) "
+        emailError: "Only via emails are allowed"
       });
     }
   };
 
+  _isValidPassword = () => {
+    this.state.password > 3
+      ? this.setState({ passwordError: "" })
+      : this.setState({ passwordError: "Password has to be longer :)" });
+  };
+
   render() {
     let emailError = this.state.emailError;
+    let passwordError = this.state.passwordError;
     return (
       <div className="wrapper fadeInDown">
         <div id="formContent">
@@ -85,9 +92,17 @@ class Login extends Component {
               placeholder="password"
               onChange={this._handlePasswordInput}
             />
-            <input type="submit" className="fadeIn fourth" value="Log In" />
+            <input
+              type="submit"
+              className="fadeIn fourth"
+              value="Log In"
+              onClick={this._isValidPassword}
+            />
           </form>
-          <div id="login_error">{emailError}</div>
+          <div id="login_error">
+            {emailError} <br />
+            {passwordError}
+          </div>
 
           <div id="formFooter">
             <Link to="/signup">Sign up ?</Link>
