@@ -9,8 +9,8 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
-    emailError: null,
-    passwordError: null
+    emailError: "",
+    passwordError: ""
   };
   componentWillReceiveProps = nextProps => {
     if (nextProps.user.login.isAuth) this.props.history.push("/home");
@@ -54,9 +54,10 @@ class Login extends Component {
   };
 
   _isValidPassword = () => {
-    this.state.password > 3
-      ? this.setState({ passwordError: "" })
-      : this.setState({ passwordError: "Password has to be longer :)" });
+    console.log(this.state.passwordError.length);
+    if (this.state.password.length < 3) {
+      this.setState({ passwordError: "Password has to be longer :)" });
+    }
   };
 
   render() {

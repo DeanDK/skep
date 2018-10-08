@@ -26,11 +26,11 @@ app.get("/api/auth", auth, (req, res) => {
 });
 
 app.get("/api/allFiles", (req, res) => {
-  let skip = parseInt(req.query.skip);
-  let limit = parseInt(req.query.limit);
-  let order = req.query.order;
+  const skip = parseInt(req.query.skip);
+  const limit = parseInt(req.query.limit);
+  const order = req.query.order;
 
-  // ORDER = asc || desc
+  // .populate might be wrong approach
   User.find()
     .populate({ path: "files" })
     .skip(skip)
@@ -41,7 +41,20 @@ app.get("/api/allFiles", (req, res) => {
     });
 });
 
-// POST
+app.get("/api/getFiles", (req, res) => {
+  let grade = req.query.grade;
+  let study = req.query.study;
+  let subject = req.query.subject;
+
+  User.find(
+    { files: { $elemMatch: { study: study, subject: subject, grade: grade } } },
+    (err, doc) => {
+      if (err) res.status(400).send(err);
+      res.send(doc);
+    }
+  );
+});
+
 app.post("/api/login", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     if (!user) {
