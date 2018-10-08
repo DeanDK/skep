@@ -34,7 +34,7 @@ class Header extends Component {
         <Nav showNav={this.state.showNav} onHideNav={() => this.onHideNav()} />
         <Link to="/home" className="logo">
           SKEP
-          <div id="test">{this.state.email}</div>
+          <div id="username">{this.state.email}</div>
         </Link>
       </header>
     );

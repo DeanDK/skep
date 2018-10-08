@@ -279,14 +279,7 @@ input[type="password"]:placeholder {
   -moz-animation-delay: 0.6s;
   animation-delay: 0.6s;
 }
-#test {
-  display: inline-block;
-  position: absolute;
-  top: 8px;
-  right: 16px;
-  font-size: 25px;
-}
-.fadeIn.third {
+adeIn.third {
   -webkit-animation-delay: 0.8s;
   -moz-animation-delay: 0.8s;
   animation-delay: 0.8s;
@@ -409,6 +402,20 @@ input[type="password"]:placeholder {
 }
 
 /* ========================= HEADER ===========================================================================================================*/
+#username {
+  display: inline-block;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 25px;
+}
+
+@media only screen and (max-width: 600px) {
+  #username {
+    font-size: 15px;
+    padding-top: 5px;
+  }
+}
 
 header {
   padding-top: 5px;
