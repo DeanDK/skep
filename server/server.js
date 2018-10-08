@@ -41,6 +41,7 @@ app.get("/api/allFiles", (req, res) => {
     });
 });
 
+// TODO: New approach for filtering
 app.get("/api/getFiles", (req, res) => {
   let grade = req.query.grade;
   let study = req.query.study;
