@@ -83,6 +83,15 @@ userSchema.statics.findByToken = function(token, cb) {
   });
 };
 
+userSchema.statics.deleteToken = function(token, cb) {
+  var user = this;
+
+  user.update({ $unset: { token: 1 } }, (err, user) => {
+    if (err) return cb(err);
+    cb(null, user);
+  });
+};
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = { User };

@@ -26,6 +26,13 @@ app.get("/api/auth", auth, (req, res) => {
   });
 });
 
+app.get("api/logout", auth, (req, res) => {
+  req.user.deleteToken(req.token, (err, user) => {
+    if (err) return res.status(400).send(err);
+    res.sendStatus(200);
+  });
+});
+
 app.get("/api/allFiles", (req, res) => {
   const skip = parseInt(req.query.skip);
   const limit = parseInt(req.query.limit);
