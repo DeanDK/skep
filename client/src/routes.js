@@ -7,6 +7,7 @@ import Layout from "./hoc/layout";
 import AddProject from "./components/Add/project.js";
 import SignUp from "./containers/Admin/sign_up.js";
 import AddAdmin from "./containers/Admin/add_admin.js";
+import Logout from "./containers/Admin/logout.js";
 
 import Auth from "./hoc/auth";
 const Routes = () => {
@@ -18,6 +19,7 @@ const Routes = () => {
         <Route path="/home" exact component={Auth(Home)} />
         <Route path="/user/add" exact component={Auth(AddProject)} />
         <Route path="/user/register" exact component={Auth(AddAdmin)} />
+        <Route path="/user/logout" exact component={Auth(Logout)} />
       </Layout>
     </Switch>
   );

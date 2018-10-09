@@ -16,7 +16,7 @@ export default function(ComposedClass, reload) {
       this.setState({ loading: false });
 
       if (!nextProps.user.auth.isAuth) {
-        if (reload) this.props.history.push("/login");
+        if (reload) this.props.history.push("/");
       } else {
         if (reload === false) this.props.history.push("/home");
       }
