@@ -42,6 +42,13 @@ const SideNavItems = () => {
     },
     {
       type: "sideItem",
+      icon: "crown",
+      text: "Approve",
+      link: "/user/approve",
+      restricted: false
+    },
+    {
+      type: "sideItem",
       icon: "sign-out-alt",
       text: "Logout",
       link: "/user/logout",
