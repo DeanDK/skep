@@ -16,7 +16,7 @@ const Routes = () => {
       <Route path="/" exact component={Auth(Login, false)} />
       <Route path="/signup" exact component={Auth(SignUp, false)} />
       <Layout>
-        <Route path="/home" exact component={Auth(Home)} />
+        <Route path="/home" exact component={Auth(Home, true)} />
         <Route path="/user/add" exact component={Auth(AddProject)} />
         <Route path="/user/register" exact component={Auth(AddAdmin)} />
         <Route path="/user/logout" exact component={Auth(Logout)} />
