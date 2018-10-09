@@ -54,7 +54,6 @@ class Login extends Component {
   };
 
   _isValidPassword = () => {
-    console.log(this.state.passwordError.length);
     if (this.state.password.length < 3) {
       this.setState({ passwordError: "Password has to be longer :)" });
     }

@@ -13,7 +13,6 @@ class Header extends Component {
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.user.auth.isAuth) {
-      console.log(nextProps.user.auth.email);
       this.setState({ email: nextProps.user.auth.email });
     }
   };
