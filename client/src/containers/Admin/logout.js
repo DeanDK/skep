@@ -3,7 +3,7 @@ import axios from "axios";
 
 const Logout = props => {
   console.log("hhehe");
-  let request = axios.get("/api/logout").then(request => {
+  axios.get("/api/logout").then(request => {
     props.history.push("/");
   });
 
