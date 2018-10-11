@@ -21,19 +21,19 @@ class Project extends Component {
             placeholder="Project Name *"
             required
           />
-          <label for="semester">Semester:</label>
+          <label htmlFor="semester">Semester:</label>
           <select id="semester" name="semesterSelect">
             <option value="first">1</option>
             <option value="second">2</option>
             <option value="third">3</option>
           </select>
-          <label for="subject">Subject:</label>
+          <label htmlFor="subject">Subject:</label>
           <select id="subject" name="subjectSelect">
             <option value="sdj">SDJ</option>
             <option value="con">CON</option>
             <option value="sep">SEP</option>
           </select>
-          <label for="grade">Grade:</label>
+          <label htmlFor="grade">Grade:</label>
           <select id="grade" name="gradeSelect">
             <option value="7">7</option>
             <option value="10">10</option>
@@ -45,7 +45,7 @@ class Project extends Component {
             id="file-upload"
             className="inputfile"
           />
-          <label for="file-upload">
+          <label htmlFor="file-upload">
             <span className="fas fa-upload" /> Choose a file
           </label>
           <div id="file-upload-filename" />

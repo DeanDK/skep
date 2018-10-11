@@ -25,3 +25,11 @@ export function getAllFiles(start = 0, limit = 3, order = "asc", list = "") {
 
   return { type: "GET_FILES", payload: request };
 }
+
+export function addAdmin(email = "") {
+  const request = axios
+    .patch(`/api/addAdmin`, { email })
+    .then(response => response.data);
+
+  return { type: "ADD_ADMIN", payload: request };
+}

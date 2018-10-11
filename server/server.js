@@ -92,6 +92,21 @@ app.post("/api/login", (req, res) => {
   });
 });
 
+app.patch("/api/addAdmin", (req, res) => {
+  User.findOne({ email: req.body.email }, (err, user) => {
+    if (!user)
+      return res.json({
+        error: "Email has not be found"
+      });
+    user.set({ role: 1 });
+    user.save((err, updatedUser) => {
+      return res.json({
+        message: "Admin has been added"
+      });
+    });
+  });
+});
+
 app.post("/api/register", (req, res) => {
   const user = new User(req.body);
 
