@@ -698,7 +698,7 @@ li > a:only-child:after {
   .form-style-5 {
     position: absolute;
     top: 20%;
-    left: 10%;
+    left: 10 %;
     min-width: 250px;
     max-width: 420px;
   }

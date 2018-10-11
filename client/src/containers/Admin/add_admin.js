@@ -12,7 +12,24 @@ class AddAdmin extends Component {
   };
 
   render() {
-    return <div>hehe</div>;
+    return (
+      <div className="wrapper fadeInDown">
+        <div id="formContent">
+          <h2 className="active"> Add Admin</h2>
+          <form onSubmit={this._onSubmit}>
+            <input
+              type="text"
+              id="login"
+              className="fadeIn second"
+              name="email"
+              placeholder="email"
+            />
+
+            <input type="submit" className="fadeIn fourth" value="Log In" />
+          </form>
+        </div>
+      </div>
+    );
   }
 }
 
