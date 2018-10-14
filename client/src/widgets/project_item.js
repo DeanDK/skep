@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ProjectItem = item => {
+  console.log(item.files[0].name);
+
   return (
     <Link to={`/files/${item._id}`} className="book_item">
       <div className="book_header">

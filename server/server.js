@@ -38,13 +38,11 @@ app.get("/api/allFiles", (req, res) => {
   const limit = parseInt(req.query.limit);
   const order = req.query.order;
 
-  // .populate might be wrong approach
-  User.find()
-    .populate({ path: "files" })
-    .skip(skip)
+  User.find({ files: { $exists: true }, $where: "this.files.length>0" })
     .limit(limit)
+    .skip(skip)
     .exec((err, doc) => {
-      if (err) return res.status(400).send(err);
+      if (err) res.status(400).send(err);
       res.send(doc);
     });
 });
@@ -122,16 +120,13 @@ app.post("/api/register", (req, res) => {
 app.patch("/api/addFile", (req, res) => {
   User.findByToken(req.headers.auth, (err, user) => {
     if (err) res.json({ message: err });
-    user.set({
-      files: [
-        {
-          name: req.body.files[0].name,
-          subject: req.body.files[0].subject,
-          grade: req.body.files[0].grade,
-          study: req.body.files[0].study
-        }
-      ]
-    });
+    const file = {
+      name: req.body.files[0].name,
+      subject: req.body.files[0].subject,
+      grade: req.body.files[0].grade,
+      study: req.body.files[0].study
+    };
+    user.files.push(file);
     user.save((err, updatedUser) => {
       if (err) return handleError(err);
       res.send(updatedUser);

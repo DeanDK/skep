@@ -24,7 +24,7 @@ class Home extends Component {
   _renderItems = files =>
     files
       ? files.map((item, i) => {
-          return <ProjectItem {...item} key={i} index={i} />;
+          return <ProjectItem {...item} key={i} index={i} id="home" />;
         })
       : null;
 
