@@ -19,6 +19,8 @@ import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { faCrown } from "@fortawesome/free-solid-svg-icons";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 library.add(faBars);
 library.add(faHome);
@@ -29,6 +31,8 @@ library.add(faUserAlt);
 library.add(faCrown);
 library.add(faBook);
 library.add(faPaperPlane);
+library.add(faCheck);
+library.add(faTimes);
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
   ReduxThunk

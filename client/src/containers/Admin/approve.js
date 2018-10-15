@@ -21,7 +21,7 @@ class Approve extends Component {
   _renderItems = files =>
     files
       ? files.map((item, i) => {
-          return <ProjectItem {...item} key={i} index={i} id="home" />;
+          return <ProjectItem {...item} key={i} index={i} id="approve" />;
         })
       : null;
 

@@ -615,6 +615,17 @@ li > a:only-child:after {
   font-weight: 700;
 }
 
+#check {
+  color: green;
+  float: right;
+}
+
+#times {
+  color: red;
+  padding-right: 30px;
+  float: right;
+}
+
 .book_item .book_items {
   font-size: 13px;
 }
