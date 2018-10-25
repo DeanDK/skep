@@ -11,11 +11,12 @@ class Approve extends Component {
   };
 
   componentWillMount = () => {
-    this.props.dispatch(getAllFiles(0, this.state.limit, "asc"));
+    if (this.props.user.auth.role !== 1) this.props.history.push("/home");
   };
 
   _loadmore = () => {
     const count = this.props.files.file.length;
+    this.props.dispatch(getAllFiles(count, this.state.limit, "asc"));
   };
 
   _renderItems = files =>

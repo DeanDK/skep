@@ -68,11 +68,7 @@ class Login extends Component {
           <h2 className="active"> Sign In </h2>
 
           <div className="fadeIn first">
-            <img
-              src="http://danielzawadzki.com/codepen/01/icon.svg"
-              id="icon"
-              alt="User Icon"
-            />
+            <img src="/images/student_icon.png" id="icon" alt="User Icon" />
           </div>
 
           <form onSubmit={this._onSubmit}>

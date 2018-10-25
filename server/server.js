@@ -1,6 +1,9 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const axios = require("axios");
+const busboy = require("connect-busboy");
 const cookieParser = require("cookie-parser");
+const FormData = require("form-data");
 const config = require("./config/config").get(process.env.NODE_ENV);
 const mongoose = require("mongoose");
 
@@ -13,7 +16,8 @@ mongoose.connect(config.DATABASE);
 const { User } = require("./models/user");
 const { auth } = require("./middlewares/auth");
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: 1024102420 }));
+app.use(busboy({ immediate: true }));
 app.use(cookieParser());
 
 // GET
