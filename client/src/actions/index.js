@@ -33,3 +33,11 @@ export function addAdmin(email = "") {
 
   return { type: "ADD_ADMIN", payload: request };
 }
+
+export function getUserFiles(id = "") {
+  const request = axios
+    .get(`/api/getUserFiles?id=${id}`)
+    .then(response => response.data);
+
+  return { type: "GET_USER_FILES", payload: request };
+}

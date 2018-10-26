@@ -48,6 +48,15 @@ app.get("/api/allFiles", (req, res) => {
     });
 });
 
+app.get("/api/getUserFiles", (req, res) => {
+  console.log(User);
+  User.findOne({ _id: req.query.id }, (err, user) => {
+    if (!user)
+      return res.json({ isAuth: false, message: "Email has not been found" });
+    res.send(user);
+  });
+});
+
 // TODO: New approach for filtering
 app.get("/api/getFiles", (req, res) => {
   let grade = req.query.grade;

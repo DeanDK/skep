@@ -8,7 +8,7 @@ const ProjectItem = item => {
 
   if (item.files[count].approved && item.id === "home") {
     return (
-      <Link to={`/files/${item._id}`} className="book_item">
+      <Link to={`/files/${item.files[0]._id}`} className="book_item">
         <div className="book_header">
           <h2>{item.files[count].name}</h2>
         </div>
