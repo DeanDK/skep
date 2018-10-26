@@ -3,61 +3,68 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // TODO: Use map
-const ProjectItem = item => {
-  let count = 0;
+const ProjectItem = items => {
+  const element = (item, i) => (
+    <div key={i}>
+      {item.approved &&
+        items.id === "home" && (
+          <Link to={`/files`} className="book_item">
+            <div className="book_header">
+              <h2>{item.name}</h2>
+            </div>
+            <div className="book_items">
+              <div className="book_author">{item.subject}</div>
 
-  if (item.files[count].approved && item.id === "home") {
-    return (
-      <Link to={`/files/${item.files[0]._id}`} className="book_item">
-        <div className="book_header">
-          <h2>{item.files[count].name}</h2>
-        </div>
-        <div className="book_items">
-          <div className="book_author">{item.files[count].subject}</div>
+              <div className="book_bubble">
+                <strong>Study: </strong> {item.study}
+              </div>
 
-          <div className="book_bubble">
-            <strong>Study: </strong> {item.files[count].study}
-          </div>
+              <div className="book_bubble">
+                <strong>Grade: </strong> {item.grade}
+              </div>
 
-          <div className="book_bubble">
-            <strong>Grade: </strong> {item.files[count].grade}
-          </div>
+              <div className="book_publisher">
+                <strong>Published by: </strong> {items.email}
+              </div>
+            </div>
+          </Link>
+        )}
 
-          <div className="book_publisher">
-            <strong>Published by: </strong> {item.email}
-          </div>
-        </div>
-      </Link>
-    );
-  } else if (item.id === "approve" && !item.files[count].approved) {
-    return (
-      <Link to={`/files/${item._id}`} className="book_item">
-        <div className="book_header">
-          <h2>{item.files[count].name}</h2>
-        </div>
-        <div className="book_items">
-          <div className="book_author">{item.files[count].subject}</div>
+      {!item.approved &&
+        items.id === "approve" && (
+          <Link to={`/files`} className="book_item">
+            <div className="book_header">
+              <h2>{item.name}</h2>
+            </div>
+            <div className="book_items">
+              <div className="book_author">{item.subject}</div>
 
-          <div className="book_bubble">
-            <strong>Study: </strong> {item.files[count].study}
-          </div>
+              <div className="book_bubble">
+                <strong>Study: </strong> {item.study}
+              </div>
 
-          <div className="book_bubble">
-            <strong>Grade: </strong> {item.files[count].grade}
-          </div>
+              <div className="book_bubble">
+                <strong>Grade: </strong> {item.grade}
+              </div>
 
-          <div className="book_publisher">
-            <strong>Published by: </strong> {item.email}
-          </div>
+              <div className="book_publisher">
+                <strong>Published by: </strong> {items.email}
+              </div>
 
-          <FontAwesomeIcon icon="check" id="check" size="2x" />
-          <FontAwesomeIcon icon="times" id="times" size="2x" />
-        </div>
-      </Link>
-    );
-  } else {
-    return <div />;
-  }
+              <FontAwesomeIcon icon="check" id="check" size="2x" />
+              <FontAwesomeIcon icon="times" id="times" size="2x" />
+            </div>
+          </Link>
+        )}
+    </div>
+  );
+
+  const showItems = () =>
+    items.files.map((item, i) => {
+      return element(item, i);
+    });
+
+  return <div>{showItems()}</div>;
 };
 
 export default ProjectItem;

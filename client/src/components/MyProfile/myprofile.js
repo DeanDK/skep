@@ -7,6 +7,7 @@ class MyProfile extends Component {
     this.props.dispatch(getUserFiles(this.props.user.auth.id));
   };
 
+  // TODO: connect with <ProjectItem />
   render() {
     console.log(this.props);
     return <div>Hello</div>;
