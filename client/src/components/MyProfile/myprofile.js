@@ -19,8 +19,6 @@ class MyProfile extends Component {
     this.setState({ arr: nextProps.user.get_user_files.files });
   };
 
-  // TODO: connect with <ProjectItem />
-
   _loadmore = () => {
     const count = this.props.files.file.length;
     this.props.dispatch(getAllFiles(count, this.state.limit, "asc"));

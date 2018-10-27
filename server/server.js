@@ -114,6 +114,21 @@ app.patch("/api/addAdmin", (req, res) => {
   });
 });
 
+app.patch("/api/approved", (req, res) => {
+  const isApproved = req.body.shouldApprove;
+  const id = req.body.id;
+  const file_id = req.body.file_id;
+  // use {new: true} in order to return the updated user
+  User.findOneAndUpdate(
+    { _id: id, "files._id": file_id },
+    { $set: { "files.$.approved": isApproved } },
+    (err, updatedUser) => {
+      if (err) res.json({ error: "Something went wrong" });
+      res.json({ message: "success" });
+    }
+  );
+});
+
 app.post("/api/register", (req, res) => {
   const user = new User(req.body);
 
