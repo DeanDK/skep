@@ -117,7 +117,7 @@ app.patch("/api/addAdmin", (req, res) => {
 app.patch("/api/approved", (req, res) => {
   const isApproved = req.body.shouldApprove;
   const id = req.body.id;
-  const file_id = req.body.file_id;
+  const file_id = req.body.fileId;
   // use {new: true} in order to return the updated user
   User.findOneAndUpdate(
     { _id: id, "files._id": file_id },

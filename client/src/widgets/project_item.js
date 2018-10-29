@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // TODO: Use map
 const ProjectItem = items => {
@@ -50,9 +49,6 @@ const ProjectItem = items => {
               <div className="book_publisher">
                 <strong>Published by: </strong> {items.email}
               </div>
-
-              <FontAwesomeIcon icon="check" id="check" size="2x" />
-              <FontAwesomeIcon icon="times" id="times" size="2x" />
             </div>
           </Link>
         )}

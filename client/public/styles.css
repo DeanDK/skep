@@ -618,12 +618,14 @@ li > a:only-child:after {
 #check {
   color: green;
   float: right;
+  cursor: pointer;
 }
 
 #times {
   color: red;
   padding-right: 30px;
   float: right;
+  cursor: pointer;
 }
 
 .book_item .book_items {

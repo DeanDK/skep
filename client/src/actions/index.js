@@ -41,3 +41,9 @@ export function getUserFiles(id = "") {
 
   return { type: "GET_USER_FILES", payload: request };
 }
+
+export function approved(id = "", fileId = "", shouldApprove = "") {
+  axios
+    .patch(`/api/approved`, { id, fileId, shouldApprove })
+    .then(response => response.data);
+}
