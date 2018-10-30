@@ -12,6 +12,12 @@ html {
   padding: 10px;
 }
 
+.file {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;

@@ -1,8 +1,37 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { connect } from "react-redux";
+
+import { storage } from "./../../firebase";
 
 class Project extends Component {
+  state = {
+    file: null,
+    url: "",
+    email: "",
+    uploadTask: "",
+    projectName: ""
+  };
+
+  handleChange = e => {
+    if (e.target.files[0]) {
+      this.setState({ file: e.target.files[0] });
+    }
+  };
+
+  handleProjectName = e => {
+    this.setState({ projectName: e.target.value });
+  };
+
+  handleUpload = e => {
+    const { file } = this.state;
+    const projectName = this.state.projectName;
+    const email = this.props.user.auth.email;
+    storage.ref(`${email}/${projectName}`).put(file);
+  };
+
   render() {
+    console.log(this.state.projectName);
     return (
       <div className="container">
         <div className="sideText">
@@ -20,6 +49,7 @@ class Project extends Component {
             name="nameField"
             placeholder="Project Name *"
             required
+            onChange={this.handleProjectName}
           />
           <label htmlFor="semester">Semester:</label>
           <select id="semester" name="semesterSelect">
@@ -44,12 +74,13 @@ class Project extends Component {
             name="file"
             id="file-upload"
             className="inputfile"
+            onChange={this.handleChange}
           />
           <label htmlFor="file-upload">
             <span className="fas fa-upload" /> Choose a file
           </label>
           <div id="file-upload-filename" />
-          <button type="submit">
+          <button type="submit" onClick={this.handleUpload}>
             <i className="fas fa-check" /> Submit
           </button>
         </div>
@@ -58,4 +89,8 @@ class Project extends Component {
   }
 }
 
-export default Project;
+function mapStateToProps(state) {
+  return { user: state.user };
+}
+
+export default connect(mapStateToProps)(Project);
