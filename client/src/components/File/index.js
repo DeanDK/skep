@@ -10,8 +10,7 @@ class File extends Component {
     files: [],
     projectName: "",
     email: "",
-    fileId: "",
-    url: ""
+    fileId: ""
   };
 
   componentWillMount = () => {
@@ -35,13 +34,10 @@ class File extends Component {
                 projectName: this.state.files[0].name
               },
               () => {
-                storage
-                  .ref(`${this.state.email}`)
-                  .child(`${this.state.projectName}`)
-                  .getDownloadURL()
-                  .then(urlLink => {
-                    this.setState({ url: urlLink });
-                  });
+                this._getFilesFromFirebase(
+                  this.state.email,
+                  this.state.projectName
+                );
               }
             );
           } else {
@@ -52,13 +48,10 @@ class File extends Component {
                     projectName: i.name
                   },
                   () => {
-                    storage
-                      .ref(`${this.state.email}`)
-                      .child(`${this.state.projectName}`)
-                      .getDownloadURL()
-                      .then(urlLink => {
-                        this.setState({ url: urlLink });
-                      });
+                    this._getFilesFromFirebase(
+                      this.state.email,
+                      this.state.projectName
+                    );
                   }
                 );
               }
@@ -67,6 +60,16 @@ class File extends Component {
         }
       }
     );
+  };
+
+  _getFilesFromFirebase = (email, projectName) => {
+    storage
+      .ref(`${email}`)
+      .child(`${projectName}`)
+      .getDownloadURL()
+      .then(urlLink => {
+        this.setState({ url: urlLink });
+      });
   };
 
   render() {
