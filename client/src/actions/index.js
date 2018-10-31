@@ -47,3 +47,16 @@ export function approved(id = "", fileId = "", shouldApprove = "") {
     .patch(`/api/approved`, { id, fileId, shouldApprove })
     .then(response => response.data);
 }
+
+export function addFile(name, subject, grade, study, auth) {
+  const headers = {
+    "Content-Type": "application/json",
+    auth: auth
+  };
+  const files = [{ name, subject, grade, study }];
+  const request = axios
+    .post(`/api/addFile`, { files }, { headers })
+    .then(response => response.data);
+
+  return { type: "ADD_FILES", payload: request };
+}

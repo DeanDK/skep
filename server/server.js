@@ -141,7 +141,7 @@ app.post("/api/register", (req, res) => {
   });
 });
 
-app.patch("/api/addFile", (req, res) => {
+app.post("/api/addFile", (req, res) => {
   User.findByToken(req.headers.auth, (err, user) => {
     if (err) res.json({ message: err });
     const file = {
@@ -152,8 +152,15 @@ app.patch("/api/addFile", (req, res) => {
     };
     user.files.push(file);
     user.save((err, updatedUser) => {
-      if (err) return handleError(err);
-      res.send(updatedUser);
+      console.log(err);
+      if (err)
+        return res.json({
+          error: "Something went wrong while uploading. Please try again."
+        });
+      return res.json({
+        message:
+          "Upload was successfull. Your file will be waiting for approval."
+      });
     });
   });
 });
