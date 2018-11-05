@@ -152,14 +152,13 @@ app.post("/api/addFile", (req, res) => {
     };
     user.files.push(file);
     user.save((err, updatedUser) => {
-      console.log(err);
       if (err)
         return res.json({
           error: "Something went wrong while uploading. Please try again."
         });
       return res.json({
         message:
-          "Upload was successfull. Your file will be waiting for approval."
+          "Upload was successfull. Your file will be waiting for approval"
       });
     });
   });
