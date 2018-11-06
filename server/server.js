@@ -164,6 +164,17 @@ app.post("/api/addFile", (req, res) => {
   });
 });
 
+app.post("/api/deleteFile", (req, res) => {
+  User.findByIdAndUpdate(
+    req.body.id,
+    { $pull: { files: { _id: req.body.file_id } } },
+    (err, doc) => {
+      if (err) return res.json({ error: err });
+      return res.json({ message: "success" });
+    }
+  );
+});
+
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`SERVER RUNNNING`);
