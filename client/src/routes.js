@@ -6,7 +6,7 @@ import Login from "./containers/Admin/login";
 import Layout from "./hoc/layout";
 import AddProject from "./components/Add/project.js";
 import MyProfile from "./components/MyProfile/myprofile.js";
-import File from "./components/File/index.js";
+import File from "./components/File/home_file.js";
 import SignUp from "./containers/Admin/sign_up.js";
 import AddAdmin from "./containers/Admin/add_admin.js";
 import Logout from "./containers/Admin/logout.js";

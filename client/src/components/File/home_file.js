@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 
 import { storage } from "./../../firebase";
 import { getUserFiles } from "./../../actions";
+import File from "./../../widgets/file";
 
-class File extends Component {
+class HomeFile extends Component {
   state = {
     url: "",
     files: [],
@@ -73,20 +74,11 @@ class File extends Component {
   };
 
   render() {
-    if (this.state.url === "") {
-      return <div className="loader">Loading...</div>;
-    } else {
-      return (
-        <div className="file">
-          <iframe
-            src={this.state.url}
-            title="file"
-            width="800px"
-            height="600px"
-          />
-        </div>
-      );
-    }
+    return (
+      <div>
+        <File url={this.state.url} />
+      </div>
+    );
   }
 }
 
@@ -94,4 +86,4 @@ function mapStateToProps(state) {
   return { user: state.user };
 }
 
-export default connect(mapStateToProps)(File);
+export default connect(mapStateToProps)(HomeFile);
