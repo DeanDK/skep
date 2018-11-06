@@ -9,12 +9,12 @@ class Login extends Component {
   state = {
     email: "",
     password: "",
-    emailError: "",
-    passwordError: ""
+    error: ""
   };
   componentWillReceiveProps = nextProps => {
     if (nextProps.user.login.isAuth) this.props.history.push("/home");
   };
+
   _handleEmailInput = e => {
     this.setState({ email: e.target.value });
   };
@@ -48,20 +48,19 @@ class Login extends Component {
       });
     } else {
       this.setState({
-        emailError: "Only via emails are allowed"
+        error: "Only via emails are allowed"
       });
     }
   };
 
-  _isValidPassword = () => {
-    if (this.state.password.length < 3) {
-      this.setState({ passwordError: "Password has to be longer :)" });
-    }
-  };
+  // _isValidPassword = () => {
+  //   if (this.state.password.length < 3) {
+  //     this.setState({ error: "Password has to be longer :)" });
+  //   }
+  // };
 
   render() {
-    let emailError = this.state.emailError;
-    let passwordError = this.state.passwordError;
+    let error = this.state.error;
     return (
       <div className="wrapper fadeInDown">
         <div id="formContent">
@@ -77,7 +76,7 @@ class Login extends Component {
               id="login"
               className="fadeIn second"
               name="login"
-              placeholder="login"
+              placeholder="only via.dk email"
               onChange={this._handleEmailInput}
             />
             <input
@@ -95,10 +94,7 @@ class Login extends Component {
               onClick={this._isValidPassword}
             />
           </form>
-          <div id="login_error">
-            {emailError} <br />
-            {passwordError}
-          </div>
+          <div id="login_error">{error}</div>
 
           <div id="formFooter">
             <Link to="/signup">Sign up ?</Link>
@@ -111,7 +107,8 @@ class Login extends Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.user
+    user: state.user,
+    login: state.login
   };
 }
 

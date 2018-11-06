@@ -63,7 +63,6 @@ class File extends Component {
   };
 
   _getFilesFromFirebase = (email, projectName) => {
-    console.log(email);
     storage
       .ref(`${email}`)
       .child(`${projectName}`)

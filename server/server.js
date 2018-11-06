@@ -84,7 +84,7 @@ app.post("/api/login", (req, res) => {
       if (!isMatch)
         return res.json({
           isAuth: false,
-          message: "Wrong password"
+          message: "Password is incorrect"
         });
 
       user.generateToken((err, user) => {
