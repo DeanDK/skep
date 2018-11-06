@@ -6,7 +6,7 @@ import Login from "./containers/Admin/login";
 import Layout from "./hoc/layout";
 import AddProject from "./components/Add/project.js";
 import MyProfile from "./components/MyProfile/myprofile.js";
-import File from "./components/File/home_file.js";
+import File from "./components/File/Home/home_file.js";
 import SignUp from "./containers/Admin/sign_up.js";
 import AddAdmin from "./containers/Admin/add_admin.js";
 import Logout from "./containers/Admin/logout.js";
@@ -25,7 +25,12 @@ const Routes = () => {
         <Route path="/user/register" exact component={Auth(AddAdmin, true)} />
         <Route path="/user/logout" exact component={Auth(Logout, true)} />
         <Route path="/user/approve" exact component={Auth(Approve, true)} />
-        <Route path="/files/:id/:file_id" exact component={Auth(File, null)} />
+        <Route path="/file/:id/:file_id" exact component={Auth(File, null)} />
+        <Route
+          path="/approve/:id/:file_id"
+          exact
+          component={Auth(File, true)}
+        />
       </Layout>
     </Switch>
   );

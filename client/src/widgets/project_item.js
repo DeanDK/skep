@@ -7,7 +7,7 @@ const ProjectItem = items => {
     <div key={i}>
       {item.approved &&
         items.id === "home" && (
-          <Link to={`/files/${items._id}/${item._id}`} className="book_item">
+          <Link to={`/file/${items._id}/${item._id}`} className="book_item">
             <div className="book_header">
               <h2>{item.name}</h2>
             </div>
@@ -31,7 +31,7 @@ const ProjectItem = items => {
 
       {!item.approved &&
         items.id === "approve" && (
-          <Link to={`/files`} className="book_item">
+          <Link to={`/approve/${items._id}/${item._id}`} className="book_item">
             <div className="book_header">
               <h2>{item.name}</h2>
             </div>

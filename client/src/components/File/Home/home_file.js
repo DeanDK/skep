@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { storage } from "./../../firebase";
-import { getUserFiles } from "./../../actions";
-import File from "./../../widgets/file";
+import { storage } from "./../../../firebase";
+import { getUserFiles } from "./../../../actions";
+import File from "./../../../widgets/file";
 
 class HomeFile extends Component {
   state = {
@@ -11,11 +11,13 @@ class HomeFile extends Component {
     files: [],
     projectName: "",
     email: "",
-    fileId: ""
+    fileId: "",
+    displayComponentName: ""
   };
 
   componentWillMount = () => {
     const partialURL = window.location.href.split("/");
+    this.setState({ displayComponentName: partialURL[3] });
     const id = partialURL[4];
     this.setState({ fileId: partialURL[5] });
     this.props.dispatch(getUserFiles(id));
@@ -76,7 +78,7 @@ class HomeFile extends Component {
   render() {
     return (
       <div>
-        <File url={this.state.url} />
+        <File url={this.state.url} name={this.state.displayComponentName} />
       </div>
     );
   }
