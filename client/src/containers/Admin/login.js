@@ -60,6 +60,7 @@ class Login extends Component {
   // };
 
   render() {
+    console.log(this.props);
     let error = this.state.error;
     return (
       <div className="wrapper fadeInDown">
@@ -94,7 +95,9 @@ class Login extends Component {
               onClick={this._isValidPassword}
             />
           </form>
-          <div id="login_error">{error}</div>
+          <div id="login_error">
+            {this.props.user.login ? this.props.user.login.message : error}
+          </div>
 
           <div id="formFooter">
             <Link to="/signup">Sign up ?</Link>
