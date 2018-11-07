@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 
 import { storage } from "./../../../firebase";
 import { getUserFiles } from "./../../../actions";
+import { approved } from "./../../../actions";
+import { deleteFile } from "./../../../actions";
 import File from "./../../../widgets/file";
 
 class HomeFile extends Component {
@@ -12,15 +14,18 @@ class HomeFile extends Component {
     projectName: "",
     email: "",
     fileId: "",
+    userId: "",
     displayComponentName: ""
   };
 
   componentWillMount = () => {
     const partialURL = window.location.href.split("/");
-    this.setState({ displayComponentName: partialURL[3] });
-    const id = partialURL[4];
+    this.setState({
+      displayComponentName: partialURL[3],
+      userId: partialURL[4]
+    });
     this.setState({ fileId: partialURL[5] });
-    this.props.dispatch(getUserFiles(id));
+    this.props.dispatch(getUserFiles(partialURL[4]));
   };
 
   componentWillReceiveProps = nextProps => {
@@ -75,10 +80,25 @@ class HomeFile extends Component {
       });
   };
 
+  _approve = shouldApprove => {
+    this.props.dispatch(
+      approved(this.state.userId, this.state.fileId, shouldApprove)
+    );
+  };
+
+  _disapprove = () => {
+    this.props.dispatch(deleteFile(this.state.userId, this.state.fileId));
+  };
+
   render() {
     return (
       <div>
-        <File url={this.state.url} name={this.state.displayComponentName} />
+        <File
+          url={this.state.url}
+          name={this.state.displayComponentName}
+          approve={this._approve}
+          deleteFile={this._disapprove}
+        />
       </div>
     );
   }

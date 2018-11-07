@@ -837,3 +837,12 @@ li > a:only-child:after {
   padding: 8px 18px;
   text-decoration: none;
 }
+
+/*================================
+        BUTTONS
+  ================================*/
+
+.approveButton {
+  margin-left: 10px;
+  height: 40px;
+}

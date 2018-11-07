@@ -167,7 +167,7 @@ app.post("/api/addFile", (req, res) => {
 app.post("/api/deleteFile", (req, res) => {
   User.findByIdAndUpdate(
     req.body.id,
-    { $pull: { files: { _id: req.body.file_id } } },
+    { $pull: { files: { _id: req.body.fileId } } },
     (err, doc) => {
       if (err) return res.json({ error: err });
       return res.json({ message: "success" });

@@ -18,11 +18,14 @@ const File = props => {
       return <div className="loader">Loading...</div>;
     } else {
       return (
-        <div>
-          <div className="file">
-            <iframe src={props.url} title="file" width="800px" height="600px" />
-          </div>
-          <button className="deleteButton">Delete</button>
+        <div className="file">
+          <iframe src={props.url} title="file" width="800px" height="600px" />
+          <button className="approveButton" onClick={() => props.approve(true)}>
+            Approve
+          </button>
+          <button className="approveButton" onClick={() => props.deleteFile()}>
+            Dissaprove
+          </button>
         </div>
       );
     }

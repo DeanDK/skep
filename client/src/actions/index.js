@@ -43,9 +43,11 @@ export function getUserFiles(id = "") {
 }
 
 export function approved(id = "", fileId = "", shouldApprove = "") {
-  axios
+  const request = axios
     .patch(`/api/approved`, { id, fileId, shouldApprove })
     .then(response => response.data);
+
+  return { type: "GET_APPROVED_MESSAGE", payload: request };
 }
 
 export function addFile(name, subject, grade, study, auth) {
@@ -59,4 +61,12 @@ export function addFile(name, subject, grade, study, auth) {
     .then(response => response.data);
 
   return { type: "ADD_FILES", payload: request };
+}
+
+export function deleteFile(id = "", fileId = "") {
+  const request = axios
+    .post("/api/deleteFile", { id, fileId })
+    .then(response => response.data);
+
+  return { type: "GET_DELETE_MESSAGE", payload: request };
 }

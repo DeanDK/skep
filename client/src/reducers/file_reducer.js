@@ -4,6 +4,8 @@ export default function(state = {}, action) {
       return { ...state, file: action.payload };
     case "ADD_FILES":
       return { ...state, file_add: action.payload };
+    case "GET_APPROVED_MESSAGE":
+      return { ...state, success_message: action.payload };
     default:
       return state;
   }
