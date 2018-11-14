@@ -3,7 +3,7 @@ class SecondHeader extends Component {
   render() {
     return (
       <div id="container">
-        <nav>
+        <nav className="searchBar">
           <ul>
             <li>
               <a>Grades</a>

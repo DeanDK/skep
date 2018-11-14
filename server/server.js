@@ -60,10 +60,9 @@ app.get("/api/getUserFiles", (req, res) => {
 app.get("/api/getFiles", (req, res) => {
   let grade = req.query.grade;
   let study = req.query.study;
-  let subject = req.query.subject;
 
   User.find(
-    { files: { $elemMatch: { study: study, subject: subject, grade: grade } } },
+    { files: { $elemMatch: { study: study, grade: grade } } },
     (err, doc) => {
       if (err) res.status(400).send(err);
       res.send(doc);

@@ -7,8 +7,15 @@ const SideNavItems = () => {
     {
       type: "sideItem",
       icon: "home",
-      text: "Home",
+      text: "Projects",
       link: "/home",
+      restricted: false
+    },
+    {
+      type: "sideItem",
+      icon: "home",
+      text: "Internships",
+      link: "/internship",
       restricted: false
     },
     {
@@ -29,14 +36,21 @@ const SideNavItems = () => {
     {
       type: "sideItem",
       icon: "book",
-      text: "Add Projects",
+      text: "Add Files",
       link: "/user/add",
       restricted: false
     },
     {
       type: "sideItem",
       icon: "crown",
-      text: "Approve",
+      text: "Approve File",
+      link: "/user/approve",
+      restricted: false
+    },
+    {
+      type: "sideItem",
+      icon: "crown",
+      text: "Approve Internship",
       link: "/user/approve",
       restricted: false
     },
