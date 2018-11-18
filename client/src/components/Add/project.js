@@ -70,7 +70,17 @@ class Project extends Component {
           <label id="safe">Safe. Secure. Free</label>
         </div>
         <div className="form-style-5">
-          <legend className="fas fa-lock"> Upload a project</legend>
+          <div className="toggle">
+            <label className="switch">
+              <input
+                id="preenty-switch"
+                type="checkbox"
+                v-model="preenty_switch"
+              />
+              <span className="slider round" />
+            </label>
+            <div className="fas fa-lock"> Upload a project</div>
+          </div>
           <input
             type="text"
             name="nameField"
