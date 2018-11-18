@@ -27,7 +27,7 @@ const userSchema = mongoose.Schema({
     default: 0 // 0 is student, 1 is admin
   },
   files: [FileSchema],
-  internship: [InternshipSchema]
+  internships: [InternshipSchema]
 });
 
 /* Method will only be used if user needs to reg

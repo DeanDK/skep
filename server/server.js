@@ -163,6 +163,29 @@ app.post("/api/addFile", (req, res) => {
   });
 });
 
+app.post("/api/addInternship", (req, res) => {
+  User.findByToken(req.headers.auth, (err, user) => {
+    if (err) res.json({ message: err });
+    const internship = {
+      companyName: req.body.internships[0].companyName,
+      country: req.body.internships[0].country,
+      grade: req.body.internships[0].year,
+      study: req.body.internships[0].study
+    };
+    user.internships.push(internship);
+    user.save((err, updatedUser) => {
+      if (err)
+        return res.json({
+          error: "Something went wrong while uploading. Please try again."
+        });
+      return res.json({
+        message:
+          "Upload was successfull. Your file will be waiting for approval"
+      });
+    });
+  });
+});
+
 app.post("/api/deleteFile", (req, res) => {
   User.findByIdAndUpdate(
     req.body.id,
