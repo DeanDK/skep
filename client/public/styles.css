@@ -871,7 +871,7 @@ li > a:only-child:after {
   margin-left: 0px;
   margin-top: 10px;
   float: right;
-  margin-right: 9em;
+  margin-right: 10em;
 }
 
 /* Hide default HTML checkbox */
