@@ -449,7 +449,7 @@ header .open_nav {
 
 header .sideItem {
   font-weight: 300;
-
+  font-size: 12px;
   color: #bababa;
   padding: 0 10 0 10px;
   border-top: 1px solid #404040;
@@ -845,4 +845,9 @@ li > a:only-child:after {
 .approveButton {
   margin-left: 10px;
   height: 40px;
+}
+
+#trash {
+  float: right;
+  cursor: pointer;
 }

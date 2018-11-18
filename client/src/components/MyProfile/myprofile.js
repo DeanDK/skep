@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import { getUserFiles } from "./../../actions/index.js";
 import { getAllFiles } from "./../../actions";
+import { deleteFile } from "./../../actions";
 import ProjectItemUser from "./../../widgets/project_item_user";
 import LoadMore from "./../../widgets/load_more.js";
 
@@ -24,10 +25,20 @@ class MyProfile extends Component {
     this.props.dispatch(getAllFiles(count, this.state.limit, "asc"));
   };
 
+  handleDelete = e =>
+    this.props.dispatch(deleteFile(this.props.user.auth.id, e._id));
+
   _renderItems = files =>
     files
       ? files.map((item, i) => {
-          return <ProjectItemUser {...item} key={i} index={i} />;
+          return (
+            <ProjectItemUser
+              {...item}
+              key={i}
+              index={i}
+              onClick={() => this.handleDelete(item)}
+            />
+          );
         })
       : null;
 
