@@ -26,6 +26,25 @@ export function getAllFiles(start = 0, limit = 3, order = "asc", list = "") {
   return { type: "GET_FILES", payload: request };
 }
 
+export function getAllInternships(
+  start = 0,
+  limit = 5,
+  order = "asc",
+  list = ""
+) {
+  const request = axios
+    .get(`/api/allInternships?limit=${limit}&skip=${start}&order=${order}`)
+    .then(response => {
+      if (list) {
+        return [...list, ...response.data];
+      } else {
+        return response.data;
+      }
+    });
+
+  return { type: "GET_INTERNSHIPS", payload: request };
+}
+
 export function addAdmin(email = "") {
   const request = axios
     .patch(`/api/addAdmin`, { email })

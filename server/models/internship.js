@@ -14,7 +14,7 @@ const InternshipSchema = new Schema({
   },
   year: {
     type: Number,
-    require: true
+    required: true
   },
   study: {
     type: String,

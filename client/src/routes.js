@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 
 import Home from "./containers/home_container";
+import Internship from "./containers/internship_container";
 import Login from "./containers/Admin/login";
 import Layout from "./hoc/layout";
 import AddProject from "./components/Add/project.js";
@@ -20,6 +21,7 @@ const Routes = () => {
       <Route path="/signup" exact component={Auth(SignUp, false)} />
       <Layout>
         <Route path="/home" exact component={Auth(Home, true)} />
+        <Route path="/internship" exact component={Auth(Internship, true)} />
         <Route path="/user" exact component={Auth(MyProfile, true)} />
         <Route path="/user/add" exact component={Auth(AddProject, true)} />
         <Route path="/user/register" exact component={Auth(AddAdmin, true)} />

@@ -48,6 +48,24 @@ app.get("/api/allFiles", (req, res) => {
     });
 });
 
+app.get("/api/allInternships", (req, res) => {
+  const skip = parseInt(req.query.skip);
+  const limit = parseInt(req.query.limit);
+  const order = req.query.order;
+
+  User.find({
+    internships: { $exists: true },
+    $where: "this.internships.length>0"
+  })
+    .limit(limit)
+    .skip(skip)
+    .exec((err, doc) => {
+      if (err) res.status(400).send(err);
+      console.log(doc);
+      res.send(doc);
+    });
+});
+
 app.get("/api/getUserFiles", (req, res) => {
   User.findOne({ _id: req.query.id }, (err, user) => {
     if (!user)
@@ -169,7 +187,7 @@ app.post("/api/addInternship", (req, res) => {
     const internship = {
       companyName: req.body.internships[0].companyName,
       country: req.body.internships[0].country,
-      grade: req.body.internships[0].year,
+      year: req.body.internships[0].year,
       study: req.body.internships[0].study
     };
     user.internships.push(internship);

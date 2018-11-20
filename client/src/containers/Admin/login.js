@@ -60,7 +60,6 @@ class Login extends Component {
   // };
 
   render() {
-    console.log(this.props);
     let error = this.state.error;
     return (
       <div className="wrapper fadeInDown">
