@@ -11,13 +11,13 @@ class Home extends Component {
   };
 
   componentWillMount = () => {
-    this.props.dispatch(getAllFiles(0, this.state.limit, "asc"));
+    this.props.dispatch(getAllFiles(0, 3, "asc"));
   };
 
   _loadmore = () => {
     const count = this.props.files.file.length;
     this.props.dispatch(
-      getAllFiles(count, this.state.limit, "asc", this.props.files.file)
+      getAllFiles(count + 1, this.state.limit, "asc", this.props.files.file)
     );
   };
 

@@ -17,6 +17,8 @@ class Project extends Component {
     grade: "",
     study: "",
     subject: "",
+    error: "",
+    errorClassName: "",
     projectOrInternship: true
   };
 
@@ -42,25 +44,55 @@ class Project extends Component {
     this.setState({ subject: e.target.value });
   };
 
-  _handleUpload = e => {
-    const auth = cookies.get("auth");
-    this.props.dispatch(
-      addFile(
-        this.state.projectName,
-        this.state.subject,
-        this.state.grade,
-        this.state.study,
-        auth
-      )
-    );
-    const { file } = this.state;
-    const projectName = this.state.projectName;
-    const email = this.props.user.auth.email;
-    storage.ref(`${email}/${projectName}`).put(file);
-  };
-
   _handleToggle = e =>
     this.setState({ projectOrInternship: !this.state.projectOrInternship });
+
+  _projectVerification = (projectName, subject, grade, study) => {
+    const _ = this.state;
+    if (
+      _.projectName !== "" &&
+      _.subject !== "" &&
+      _.grade !== "" &&
+      _.study !== "" &&
+      _.file !== ""
+    ) {
+      return true;
+    }
+    return false;
+  };
+
+  _dispatchProject = (projectName, subject, grade, study) => {
+    const auth = cookies.get("auth");
+    this.props.dispatch(addFile(projectName, subject, grade, study, auth));
+  };
+
+  _handleUpload = e => {
+    const _ = this.state;
+    const readyToDispatch = this._projectVerification(
+      _.projectName,
+      _.subject,
+      _.grade,
+      _.study,
+      _.file
+    );
+
+    if (readyToDispatch) {
+      this._dispatchProject(_.projectName, _.subject, _.grade, _.study);
+      const { file } = this.state;
+      const projectName = this.state.projectName;
+      const email = this.props.user.auth.email;
+      storage.ref(`${email}/${projectName}`).put(file);
+      this.setState({
+        message: "Success. Waiting for approval",
+        messageClassName: "add_files_success"
+      });
+    } else {
+      this.setState({
+        message: "All fields must be selected",
+        messageClassName: "add_files_message"
+      });
+    }
+  };
 
   render() {
     if (this.state.projectOrInternship) {
@@ -138,6 +170,7 @@ class Project extends Component {
             <button type="submit" onClick={this._handleUpload}>
               <i className="fas fa-check" /> Submit
             </button>
+            <div id={this.state.messageClassName}>{this.state.message}</div>
           </div>
         </div>
       );

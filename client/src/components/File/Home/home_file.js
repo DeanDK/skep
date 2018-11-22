@@ -15,7 +15,9 @@ class HomeFile extends Component {
     email: "",
     fileId: "",
     userId: "",
-    displayComponentName: ""
+    displayComponentName: "",
+    message: "",
+    messageClassName: ""
   };
 
   componentWillMount = () => {
@@ -84,10 +86,18 @@ class HomeFile extends Component {
     this.props.dispatch(
       approved(this.state.userId, this.state.fileId, shouldApprove)
     );
+    this.setState({
+      message: "You have approved the file",
+      messageClassName: "add_files_success"
+    });
   };
 
   _disapprove = () => {
     this.props.dispatch(deleteFile(this.state.userId, this.state.fileId));
+    this.setState({
+      message: "You have deleted the file",
+      messageClassName: "add_files_message"
+    });
   };
 
   render() {
@@ -98,6 +108,8 @@ class HomeFile extends Component {
           name={this.state.displayComponentName}
           approve={this._approve}
           deleteFile={this._disapprove}
+          message={this.state.message}
+          messageClassName={this.state.messageClassName}
         />
       </div>
     );

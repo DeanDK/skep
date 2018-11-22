@@ -687,6 +687,18 @@ li > a:only-child:after {
   color: white;
 }
 
+#add_files_message {
+  color: red;
+  justify-content: center;
+  display: flex;
+}
+
+#add_files_success {
+  color: green;
+  justify-content: center;
+  display: flex;
+}
+
 @media only screen and (min-width: 1092px) {
   .form-style-5 {
     display: inline-block;
@@ -843,9 +855,45 @@ li > a:only-child:after {
         BUTTONS
   ================================*/
 
-.approveButton {
-  margin-left: 10px;
-  height: 40px;
+.approve_buttons {
+  justify-content: center;
+  display: flex;
+  margin-top: 20px;
+}
+
+#dissaprove {
+  margin-left: 20px;
+  background-color: #1c2998;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  text-decoration: none;
+  user-select: none;
+  letter-spacing: 1px;
+  color: white;
+  padding: 20px 40px;
+  transition: all 0.1s ease-out;
+}
+
+#approve {
+  margin-left: 20px;
+  background-color: #1c2998;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  font-weight: 100;
+  text-decoration: none;
+  user-select: none;
+  letter-spacing: 1px;
+  color: white;
+  padding: 20px 40px;
+  transition: all 0.1s ease-out;
+  position: all 0.1s ease-out;
 }
 
 #trash {

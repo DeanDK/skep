@@ -7,7 +7,8 @@ import LoadMore from "./../../widgets/load_more.js";
 
 class Approve extends Component {
   state = {
-    limit: 2
+    limit: 2,
+    message: ""
   };
 
   componentWillMount = () => {
@@ -27,6 +28,7 @@ class Approve extends Component {
       : null;
 
   render() {
+    console.log(this.props);
     return (
       <div>
         {this._renderItems(this.props.files.file)}

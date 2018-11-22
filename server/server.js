@@ -37,15 +37,22 @@ app.get("/api/logout", auth, (req, res) => {
 app.get("/api/allFiles", (req, res) => {
   const skip = parseInt(req.query.skip);
   const limit = parseInt(req.query.limit);
-  const order = req.query.order;
 
-  User.find({ files: { $exists: true }, $where: "this.files.length>0" })
-    .limit(limit)
-    .skip(skip)
-    .exec((err, doc) => {
-      if (err) res.status(400).send(err);
-      res.send(doc);
-    });
+  // User.find({ files: { $exists: true }, $where: "this.files.length>0" })
+  //   .skip(skip)
+  //   .sort({ _id: order })
+  //   .limit(limit)
+  //   .exec((err, doc) => {
+  //     if (err) res.status(400).send(err);
+  //     console.log(doc);
+  //     res.send(doc);
+  //   });
+
+  User.find({}, { files: { $slice: [skip, limit] } }).exec((err, doc) => {
+    console.log(doc);
+    if (err) res.status(400).send(err);
+    res.send(doc);
+  });
 });
 
 app.get("/api/allInternships", (req, res) => {
@@ -86,6 +93,57 @@ app.get("/api/getFiles", (req, res) => {
       res.send(doc);
     }
   );
+});
+
+app.get("/api/getInternships", (req, res) => {
+  if (req.query.study && req.query.country) {
+    console.log("both");
+    User.aggregate(
+      { $project: { internships: 1 } },
+      { $unwind: "$internships" },
+      {
+        $match: {
+          "internships.study": req.query.study,
+          "internships.country": req.query.country
+        }
+      }
+    ).exec((err, internships) => {
+      if (err) throw err;
+      res.status(200).json(internships);
+    });
+  }
+
+  if (req.query.study) {
+    console.log("study");
+    User.aggregate(
+      { $project: { internships: 1 } },
+      { $unwind: "$internships" },
+      {
+        $match: {
+          "internships.study": req.query.study
+        }
+      }
+    ).exec((err, internships) => {
+      if (err) throw err;
+      res.status(200).json(internships);
+    });
+  }
+
+  if (req.query.country) {
+    console.log("country");
+    User.aggregate(
+      { $project: { internships: 1 } },
+      { $unwind: "$internships" },
+      {
+        $match: {
+          "internships.country": req.query.country
+        }
+      }
+    ).exec((err, internships) => {
+      if (err) throw err;
+      res.status(200).json(internships);
+    });
+  }
 });
 
 app.post("/api/login", (req, res) => {
@@ -140,8 +198,8 @@ app.patch("/api/approved", (req, res) => {
     { _id: id, "files._id": file_id },
     { $set: { "files.$.approved": isApproved } },
     (err, updatedUser) => {
-      if (err) res.json({ error: "Something went wrong" });
-      res.json({ message: "success" });
+      if (err) res.json({ message: "Something went wrong. Please try again" });
+      res.json({ message: "You have approved the project" });
     }
   );
 });

@@ -19,6 +19,7 @@ export function getAllFiles(start = 0, limit = 3, order = "asc", list = "") {
       if (list) {
         return [...list, ...response.data];
       } else {
+        console.log(response.data);
         return response.data;
       }
     });
