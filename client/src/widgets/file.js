@@ -13,7 +13,7 @@ const File = props => {
     }
   }
 
-  if (props.name === "approve") {
+  if (props.name === "approve" || props.name === "approve_internship") {
     if (props.url === "") {
       return <div className="loader">Loading...</div>;
     } else {

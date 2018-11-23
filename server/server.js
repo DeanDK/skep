@@ -45,7 +45,6 @@ app.get("/api/allFiles", (req, res) => {
     .limit(limit)
     .exec((err, doc) => {
       if (err) res.status(400).send(err);
-      console.log(doc);
       res.send(doc);
     });
 

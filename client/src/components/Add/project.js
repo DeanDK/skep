@@ -5,7 +5,13 @@ import { connect } from "react-redux";
 
 import { storage } from "./../../firebase";
 import { addFile } from "./../../actions";
+import { addInternship } from "./../../actions";
 
+/* ==============================================================
+Class is too big and there's duplicated code. We should refactor it
+Commented by: Dean
+=================================================================
+*/
 const cookies = new Cookies();
 class Project extends Component {
   state = {
@@ -19,14 +25,93 @@ class Project extends Component {
     subject: "",
     error: "",
     errorClassName: "",
-    projectOrInternship: true
-  };
-
-  _handleChange = e => {
-    if (e.target.files[0]) {
-      this.setState({ file: e.target.files[0] });
+    projectOrInternship: true,
+    internship: {
+      companyName: "",
+      study: "",
+      country: "",
+      year: ""
     }
   };
+
+  _handleCompanyName = e => {
+    let input = e.target.value;
+    this.setState(prevState => ({
+      internship: {
+        ...prevState.internship,
+        companyName: input
+      }
+    }));
+  };
+
+  _handleInternshipStudy = e => {
+    let input = e.target.value;
+    this.setState(prevState => ({
+      internship: {
+        ...prevState.internship,
+        study: input
+      }
+    }));
+  };
+
+  _handleCountry = e => {
+    let input = e.target.value;
+    this.setState(prevState => ({
+      internship: {
+        ...prevState.internship,
+        country: input
+      }
+    }));
+  };
+
+  _handleYear = e => {
+    let input = e.target.value;
+    this.setState(prevState => ({
+      internship: {
+        ...prevState.internship,
+        year: input
+      }
+    }));
+  };
+
+  // project verification should be done the same way
+  _internshipVerification = e => {
+    const array = Object.values(this.state.internship);
+    return array.every(this._notEmpty);
+  };
+
+  _notEmpty = element => {
+    return element !== "";
+  };
+
+  _dispatchInternship = (companyName, study, country, year) => {
+    const auth = cookies.get("auth");
+    this.props.dispatch(addInternship(companyName, study, country, year, auth));
+  };
+
+  _handleInternshipUpload = e => {
+    const _ = this.state.internship;
+    const readyToDispatch = this._internshipVerification();
+    console.log(readyToDispatch);
+    if (readyToDispatch) {
+      this._dispatchInternship(_.companyName, _.study, _.country, _.year);
+      const { file } = this.state;
+      const companyName = this.state.internship.companyName;
+      const email = this.props.user.auth.email;
+      storage.ref(`${email}/${companyName}`).put(file);
+      this.setState({
+        message: "Success. Waiting for approval",
+        messageClassName: "add_files_success"
+      });
+    } else {
+      this.setState({
+        message: "All fields must be selected",
+        messageClassName: "add_files_message"
+      });
+    }
+  };
+
+  /* ======= START PROJECT ====================*/
 
   _handleProjectName = e => {
     this.setState({ projectName: e.target.value });
@@ -43,9 +128,6 @@ class Project extends Component {
   _handleSubject = e => {
     this.setState({ subject: e.target.value });
   };
-
-  _handleToggle = e =>
-    this.setState({ projectOrInternship: !this.state.projectOrInternship });
 
   _projectVerification = (projectName, subject, grade, study) => {
     const _ = this.state;
@@ -91,6 +173,20 @@ class Project extends Component {
         message: "All fields must be selected",
         messageClassName: "add_files_message"
       });
+    }
+  };
+
+  /* ======= END PROJECT ====================*/
+
+  _handleToggle = e =>
+    this.setState({
+      projectOrInternship: !this.state.projectOrInternship,
+      message: ""
+    });
+
+  _handleChange = e => {
+    if (e.target.files[0]) {
+      this.setState({ file: e.target.files[0] });
     }
   };
 
@@ -205,9 +301,14 @@ class Project extends Component {
               name="nameField"
               placeholder="Company Name"
               required
+              onChange={this._handleCompanyName}
             />
             <label htmlFor="semester">Study:</label>
-            <select id="semester" name="semesterSelect">
+            <select
+              id="semester"
+              name="semesterSelect"
+              onChange={this._handleInternshipStudy}
+            >
               <option value="ICT">ICT</option>
               <option value="Marketing">Marketing</option>
               <option value="VCM">VCM</option>
@@ -220,17 +321,17 @@ class Project extends Component {
             <select
               id="subject"
               name="subjectSelect"
-              onClick={this._handleSubject}
+              onClick={this._handleCountry}
             >
-              <option value="SDJ">Denmark</option>
-              <option value="CON">USA</option>
-              <option value="SEP">Germany</option>
+              <option value="Denmark">Denmark</option>
+              <option value="USA">USA</option>
+              <option value="Germany">Germany</option>
             </select>
             <label htmlFor="grade">Year of Finishing:</label>
-            <select id="grade" name="gradeSelect" onClick={this._handleGrade}>
-              <option value="7">2018</option>
-              <option value="10">2017</option>
-              <option value="12">2016</option>
+            <select id="grade" name="gradeSelect" onClick={this._handleYear}>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
             </select>
             <input
               type="file"
@@ -243,9 +344,10 @@ class Project extends Component {
               <span className="fas fa-upload" /> Choose a file
             </label>
             <div id="file-upload-filename" />
-            <button type="submit" onClick={this._handleUpload}>
+            <button type="submit" onClick={this._handleInternshipUpload}>
               <i className="fas fa-check" /> Submit
             </button>
+            <div id={this.state.messageClassName}>{this.state.message}</div>
           </div>
         </div>
       );

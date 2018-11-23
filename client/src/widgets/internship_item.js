@@ -6,7 +6,10 @@ const InternshipItems = items => {
     <div key={i}>
       {item.approved &&
         items.id === "internship" && (
-          <Link to={`/file/${items._id}/${item._id}`} className="book_item">
+          <Link
+            to={`/approve_internship/${items._id}/${item._id}`}
+            className="book_item"
+          >
             <div className="book_header">
               <h2>{item.companyName}</h2>
             </div>
@@ -30,7 +33,10 @@ const InternshipItems = items => {
 
       {!item.approved &&
         items.id === "approve" && (
-          <Link to={`/file/${items._id}/${item._id}`} className="book_item">
+          <Link
+            to={`/approve_internship/${items._id}/${item._id}`}
+            className="book_item"
+          >
             <div className="book_header">
               <h2>{item.companyName}</h2>
             </div>

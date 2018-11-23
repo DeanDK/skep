@@ -83,6 +83,19 @@ export function addFile(name, subject, grade, study, auth) {
   return { type: "ADD_FILES", payload: request };
 }
 
+export function addInternship(companyName, study, country, year, auth) {
+  const headers = {
+    "Content-Type": "application/json",
+    auth: auth
+  };
+  const internships = [{ companyName, study, country, year }];
+  const request = axios
+    .post(`/api/addInternship`, { internships }, { headers })
+    .then(response => response.data);
+
+  return { type: "ADD_INTERNSHIP", payload: request };
+}
+
 export function deleteFile(id = "", fileId = "") {
   const request = axios
     .post("/api/deleteFile", { id, fileId })

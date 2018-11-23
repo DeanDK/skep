@@ -43,6 +43,11 @@ const Routes = () => {
           exact
           component={Auth(File, true)}
         />
+        <Route
+          path="/approve_internship/:id/:file_id"
+          exact
+          component={Auth(File, true)}
+        />
       </Layout>
     </Switch>
   );
