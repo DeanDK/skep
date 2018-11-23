@@ -37,22 +37,23 @@ app.get("/api/logout", auth, (req, res) => {
 app.get("/api/allFiles", (req, res) => {
   const skip = parseInt(req.query.skip);
   const limit = parseInt(req.query.limit);
+  const order = req.query.order;
 
-  // User.find({ files: { $exists: true }, $where: "this.files.length>0" })
-  //   .skip(skip)
-  //   .sort({ _id: order })
-  //   .limit(limit)
-  //   .exec((err, doc) => {
-  //     if (err) res.status(400).send(err);
-  //     console.log(doc);
-  //     res.send(doc);
-  //   });
+  User.find({ files: { $exists: true }, $where: "this.files.length>0" })
+    .skip(skip)
+    .sort({ _id: order })
+    .limit(limit)
+    .exec((err, doc) => {
+      if (err) res.status(400).send(err);
+      console.log(doc);
+      res.send(doc);
+    });
 
-  User.find({}, { files: { $slice: [skip, limit] } }).exec((err, doc) => {
-    console.log(doc);
-    if (err) res.status(400).send(err);
-    res.send(doc);
-  });
+  // User.find({}, { files: { $slice: [skip, limit] } }).exec((err, doc) => {
+  //   console.log(doc);
+  //   if (err) res.status(400).send(err);
+  //   res.send(doc);
+  // });
 });
 
 app.get("/api/allInternships", (req, res) => {
@@ -97,7 +98,6 @@ app.get("/api/getFiles", (req, res) => {
 
 app.get("/api/getInternships", (req, res) => {
   if (req.query.study && req.query.country) {
-    console.log("both");
     User.aggregate(
       { $project: { internships: 1 } },
       { $unwind: "$internships" },
@@ -114,7 +114,6 @@ app.get("/api/getInternships", (req, res) => {
   }
 
   if (req.query.study) {
-    console.log("study");
     User.aggregate(
       { $project: { internships: 1 } },
       { $unwind: "$internships" },
@@ -130,7 +129,6 @@ app.get("/api/getInternships", (req, res) => {
   }
 
   if (req.query.country) {
-    console.log("country");
     User.aggregate(
       { $project: { internships: 1 } },
       { $unwind: "$internships" },

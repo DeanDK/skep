@@ -44,14 +44,14 @@ const SideNavItems = () => {
       type: "sideItem",
       icon: "crown",
       text: "Approve File",
-      link: "/user/approve",
+      link: "/user/approve/project",
       restricted: false
     },
     {
       type: "sideItem",
       icon: "crown",
       text: "Approve Internship",
-      link: "/user/approve",
+      link: "/user/approve/internship",
       restricted: false
     },
     {

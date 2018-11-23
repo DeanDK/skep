@@ -2,23 +2,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { getAllInternships } from "./../../actions";
-import InternshipItem from "./../../widgets/internship_item.js";
+import InternshipItem from "./../../widgets/internship_item";
 import LoadMore from "./../../widgets/load_more.js";
 
-class Internship extends Component {
+class ApproveInternship extends Component {
   state = {
-    limit: 5
+    limit: 4,
+    message: ""
   };
 
   componentWillMount = () => {
-    this.props.dispatch(getAllInternships(0, this.state.limit, "asc"));
+    if (this.props.user.auth.role !== 1) this.props.history.push("/home");
   };
 
   _loadmore = () => {
-    const count = this.props.files.file.length;
+    const count = this.props.internships.internship.length;
     this.props.dispatch(
       getAllInternships(
-        count,
+        count + 1,
         this.state.limit,
         "asc",
         this.props.internships.internship
@@ -29,7 +30,7 @@ class Internship extends Component {
   _renderItems = internships =>
     internships
       ? internships.map((item, i) => {
-          return <InternshipItem {...item} key={i} index={i} id="internship" />;
+          return <InternshipItem {...item} key={i} index={i} id="approve" />;
         })
       : null;
 
@@ -42,8 +43,9 @@ class Internship extends Component {
     );
   }
 }
+
 function mapStateToProps(state) {
   return { internships: state.internship };
 }
 
-export default connect(mapStateToProps)(Internship);
+export default connect(mapStateToProps)(ApproveInternship);
