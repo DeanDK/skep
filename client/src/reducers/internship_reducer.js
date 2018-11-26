@@ -4,6 +4,7 @@ export default function(state = {}, action) {
       return { ...state, internship: action.payload };
     case "ADD_INTERNSHIP":
       return { ...state, internship_add: action.payload };
+
     default:
       return state;
   }

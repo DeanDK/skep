@@ -55,24 +55,6 @@ app.get("/api/allFiles", (req, res) => {
   // });
 });
 
-app.get("/api/allInternships", (req, res) => {
-  const skip = parseInt(req.query.skip);
-  const limit = parseInt(req.query.limit);
-  const order = req.query.order;
-
-  User.find({
-    internships: { $exists: true },
-    $where: "this.internships.length>0"
-  })
-    .limit(limit)
-    .skip(skip)
-    .exec((err, doc) => {
-      if (err) res.status(400).send(err);
-      console.log(doc);
-      res.send(doc);
-    });
-});
-
 app.get("/api/getUserFiles", (req, res) => {
   User.findOne({ _id: req.query.id }, (err, user) => {
     if (!user)
@@ -93,6 +75,24 @@ app.get("/api/getFiles", (req, res) => {
       res.send(doc);
     }
   );
+});
+
+app.get("/api/allInternships", (req, res) => {
+  const skip = parseInt(req.query.skip);
+  const limit = parseInt(req.query.limit);
+  const order = req.query.order;
+
+  User.find({
+    internships: { $exists: true },
+    $where: "this.internships.length>0"
+  })
+    .limit(limit)
+    .skip(skip)
+    .exec((err, doc) => {
+      if (err) res.status(400).send(err);
+      console.log(doc);
+      res.send(doc);
+    });
 });
 
 app.get("/api/getInternships", (req, res) => {
@@ -196,7 +196,7 @@ app.patch("/api/approved", (req, res) => {
     { $set: { "files.$.approved": isApproved } },
     (err, updatedUser) => {
       if (err) res.json({ message: "Something went wrong. Please try again" });
-      res.json({ message: "You have approved the project" });
+      res.json({ message: "You have approved the file" });
     }
   );
 });
@@ -236,6 +236,32 @@ app.post("/api/addFile", (req, res) => {
   });
 });
 
+app.patch("/api/approvedInternship", (req, res) => {
+  const isApproved = req.body.shouldApprove;
+  const id = req.body.id;
+  const file_id = req.body.fileId;
+  // use {new: true} in order to return the updated user
+  User.findOneAndUpdate(
+    { _id: id, "internships._id": file_id },
+    { $set: { "internships.$.approved": isApproved } },
+    (err, updatedUser) => {
+      if (err) res.json({ message: "Something went wrong. Please try again" });
+      res.json({ message: "You have approved the file" });
+    }
+  );
+});
+
+app.post("/api/deleteFile", (req, res) => {
+  User.findByIdAndUpdate(
+    req.body.id,
+    { $pull: { files: { _id: req.body.fileId } } },
+    (err, doc) => {
+      if (err) return res.json({ error: err });
+      return res.json({ message: "success" });
+    }
+  );
+});
+
 app.post("/api/addInternship", (req, res) => {
   User.findByToken(req.headers.auth, (err, user) => {
     if (err) res.json({ message: err });
@@ -258,18 +284,6 @@ app.post("/api/addInternship", (req, res) => {
     });
   });
 });
-
-app.post("/api/deleteFile", (req, res) => {
-  User.findByIdAndUpdate(
-    req.body.id,
-    { $pull: { files: { _id: req.body.fileId } } },
-    (err, doc) => {
-      if (err) return res.json({ error: err });
-      return res.json({ message: "success" });
-    }
-  );
-});
-
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`SERVER RUNNNING`);

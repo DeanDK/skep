@@ -28,7 +28,6 @@ class Approve extends Component {
       : null;
 
   render() {
-    console.log(this.props.files);
     return (
       <div>
         {this._renderItems(this.props.files.file)}

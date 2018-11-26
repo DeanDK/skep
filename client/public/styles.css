@@ -420,6 +420,24 @@ adeIn.third {
   font-size: 25px;
 }
 
+.profileHeader {
+  height: 48px;
+  width: 100%;
+  background: #3b5998;
+}
+
+.profileHeader .switch {
+  float: right;
+  top: -40px;
+  margin-right: 5px;
+}
+
+.profileHeader #profileText {
+  font-size: 15px;
+  font-family: "Ranga", cursive;
+  color: #ffffff;
+}
+
 @media only screen and (max-width: 600px) {
   #username {
     font-size: 15px;

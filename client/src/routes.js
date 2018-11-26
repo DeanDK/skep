@@ -8,6 +8,7 @@ import Layout from "./hoc/layout";
 import AddProject from "./components/Add/project.js";
 import MyProfile from "./components/MyProfile/myprofile.js";
 import File from "./components/File/Home/home_file.js";
+import InternshipFile from "./components/File/Home/internship_file.js";
 import SignUp from "./containers/Admin/sign_up.js";
 import AddAdmin from "./containers/Admin/add_admin.js";
 import Logout from "./containers/Admin/logout.js";
@@ -46,7 +47,12 @@ const Routes = () => {
         <Route
           path="/approve_internship/:id/:file_id"
           exact
-          component={Auth(File, true)}
+          component={Auth(InternshipFile, true)}
+        />
+        <Route
+          path="/internship/:id/:file_id"
+          exact
+          component={Auth(InternshipFile, true)}
         />
       </Layout>
     </Switch>

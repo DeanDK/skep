@@ -1,7 +1,7 @@
 import React from "react";
 
 const File = props => {
-  if (props.name === "file") {
+  if (props.name === "file" || props.name === "internship") {
     if (props.url === "") {
       return <div className="loader">Loading...</div>;
     } else {

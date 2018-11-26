@@ -27,6 +27,14 @@ export function getAllFiles(start = 0, limit = 3, order = "asc", list = "") {
   return { type: "GET_FILES", payload: request };
 }
 
+export function addAdmin(email = "") {
+  const request = axios
+    .patch(`/api/addAdmin`, { email })
+    .then(response => response.data);
+
+  return { type: "ADD_ADMIN", payload: request };
+}
+
 export function getAllInternships(
   start = 0,
   limit = 5,
@@ -44,14 +52,6 @@ export function getAllInternships(
     });
 
   return { type: "GET_INTERNSHIPS", payload: request };
-}
-
-export function addAdmin(email = "") {
-  const request = axios
-    .patch(`/api/addAdmin`, { email })
-    .then(response => response.data);
-
-  return { type: "ADD_ADMIN", payload: request };
 }
 
 export function getUserFiles(id = "") {
@@ -81,6 +81,14 @@ export function addFile(name, subject, grade, study, auth) {
     .then(response => response.data);
 
   return { type: "ADD_FILES", payload: request };
+}
+
+export function approvedInternship(id = "", fileId = "", shouldApprove = "") {
+  const request = axios
+    .patch(`/api/approvedInternship`, { id, fileId, shouldApprove })
+    .then(response => response.data);
+
+  return { type: "GET_APPROVED_MESSAGE", payload: request };
 }
 
 export function addInternship(companyName, study, country, year, auth) {

@@ -7,7 +7,7 @@ const InternshipItems = items => {
       {item.approved &&
         items.id === "internship" && (
           <Link
-            to={`/approve_internship/${items._id}/${item._id}`}
+            to={`/internship/${items._id}/${item._id}`}
             className="book_item"
           >
             <div className="book_header">
