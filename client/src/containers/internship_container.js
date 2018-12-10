@@ -6,7 +6,7 @@ class InternshipContainer extends Component {
   render() {
     return (
       <div>
-        <SecondHeader />
+        <SecondHeader id="internship" />
         <Internship />
       </div>
     );

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { getUserFiles } from "./../../actions/index.js";
-import { getUserInternships } from "./../../actions/index.js";
 import { getAllFiles } from "./../../actions";
 import { deleteFile } from "./../../actions";
 import ProjectItemUser from "./../../widgets/project_item_user";

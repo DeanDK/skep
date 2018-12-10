@@ -111,3 +111,11 @@ export function deleteFile(id = "", fileId = "") {
 
   return { type: "GET_DELETE_MESSAGE", payload: request };
 }
+
+export function filterInternships(country = "", study = "") {
+  const request = axios
+    .get(`/api/getInternships?country=${country}&study=${study}`)
+    .then(response => response.data);
+
+  return { type: "GET_INTERNSHIPS", payload: request };
+}

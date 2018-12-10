@@ -34,9 +34,12 @@ class Internship extends Component {
       : null;
 
   render() {
+    console.log(this.props);
     return (
       <div>
-        {this._renderItems(this.props.internships.internship)}
+        {this._renderItems(
+          this.props.internships.internship || this.props.internship
+        )}
         <LoadMore onClick={this._loadmore} />
       </div>
     );

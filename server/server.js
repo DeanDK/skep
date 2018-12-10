@@ -96,51 +96,56 @@ app.get("/api/allInternships", (req, res) => {
 });
 
 app.get("/api/getInternships", (req, res) => {
-  if (req.query.study && req.query.country) {
-    User.aggregate(
-      { $project: { internships: 1 } },
-      { $unwind: "$internships" },
-      {
-        $match: {
-          "internships.study": req.query.study,
-          "internships.country": req.query.country
-        }
-      }
-    ).exec((err, internships) => {
-      if (err) throw err;
-      res.status(200).json(internships);
-    });
-  }
-
-  if (req.query.study) {
-    User.aggregate(
-      { $project: { internships: 1 } },
-      { $unwind: "$internships" },
-      {
-        $match: {
-          "internships.study": req.query.study
-        }
-      }
-    ).exec((err, internships) => {
-      if (err) throw err;
-      res.status(200).json(internships);
-    });
-  }
-
-  if (req.query.country) {
-    User.aggregate(
-      { $project: { internships: 1 } },
-      { $unwind: "$internships" },
-      {
-        $match: {
-          "internships.country": req.query.country
-        }
-      }
-    ).exec((err, internships) => {
-      if (err) throw err;
-      res.status(200).json(internships);
-    });
-  }
+  User.find({ "internships.country": req.query.country }, (err, doc) => {
+    if (err) res.status(400).send(err);
+    res.send(doc);
+  });
+  // if (req.query.study && req.query.country) {
+  //   User.aggregate(
+  //     { $project: { internships: 1 } },
+  //     { $unwind: "$internships" },
+  //     {
+  //       $match: {
+  //         "internships.study": req.query.study,
+  //         "internships.country": req.query.country
+  //       }
+  //     }
+  //   ).exec((err, internships) => {
+  //     if (err) throw err;
+  //     res.status(200).json(internships);
+  //   });
+  // }
+  //
+  // if (req.query.study) {
+  //   User.aggregate(
+  //     { $project: { internships: 1 } },
+  //     { $unwind: "$internships" },
+  //     {
+  //       $match: {
+  //         "internships.study": req.query.study
+  //       }
+  //     }
+  //   ).exec((err, internships) => {
+  //     if (err) throw err;
+  //     res.status(200).json(internships);
+  //   });
+  // }
+  //
+  // if (req.query.country) {
+  //   User.aggregate(
+  //     { $project: { internships: 1 } },
+  //     { $unwind: "$internships" },
+  //     {
+  //       $match: {
+  //         "internships.country": req.query.country,
+  //         "internships.approved": true
+  //       }
+  //     }
+  //   ).exec((err, internships) => {
+  //     if (err) throw err;
+  //     res.status(200).json(internships);
+  //   });
+  // }
 });
 
 app.post("/api/login", (req, res) => {

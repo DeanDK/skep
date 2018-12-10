@@ -6,7 +6,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-        <SecondHeader />
+        <SecondHeader id="project" />
         <Home />
       </div>
     );
